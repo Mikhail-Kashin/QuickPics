@@ -33,9 +33,9 @@ const LoginForm = () => {
 
   return (
     <main>
-      <div className="page">
-        <div className="header">
-          <h1 className="logo">QuickPics</h1>
+      <div className="login">
+        <div className="head">
+          <h1 className="logo1">QuickPics</h1>
           <button><a href='//facebook.com'><i className="fab fa-facebook-square" />Log in with Facebook</a></button>
           <div>
             <hr />
@@ -43,7 +43,7 @@ const LoginForm = () => {
             <hr />
           </div>
         </div>
-        <div className="container">
+        <div className="contain">
       <form onSubmit={onLogin}>
         <div>
           {errors.map((error) => (
@@ -70,8 +70,8 @@ const LoginForm = () => {
         <div><button type="submit">Login</button></div>
         </div>
       </form>
-          <div className='not'>
-            <NavLink to='/sign-up'>Not a QuickPics member? Sign up here.</NavLink>
+          <div className="not">
+            <p>Not a QuickPics member? <NavLink to='/sign-up'>Sign up here</NavLink></p>
           </div>
       </div>
       </div>

@@ -14,31 +14,31 @@ main{
   align-items: center;
 }
 
-.page{
+.login{
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-bottom: 30px;
 }
 
-/* header style */
-.page .header{
+/* head style */
+.login .head{
   text-align: center;
 }
 
-.page .header .logo, 
-.page .header p, 
-.page .header button{
+.login .head .logo1, 
+.login .head p, 
+.login .head button{
   margin-bottom: 15px;
 }
 
-.page .header > p{
+.login .head > p{
   font-weight: bold;
   color: #8e8e8e;
   font-size: 18px;
 }
 
-.page .header > button{
+.login .head > button{
   width: inherit;
   padding: 10px 20px;
   border-radius: 5px;
@@ -47,44 +47,44 @@ main{
   color: #ffffff;
 }
 
-.page .header div{
+.login .head div{
   display: flex;
   flex-direction: row;
   align-items: center;
   color: #8e8e8e;
 }
 
-.page .header div p{
+.login .head div p{
   padding: 0 20px;  
 }
 
-.page .header div hr{
+.login .head div hr{
   width: 200px;
   
 }
 
-/* container style*/
-.page .container{
+/* contain style*/
+.login .contain{
   display: flex;
   flex-direction: column;
 }
 
-.page .container form, input{
+.login .contain form, input{
   width: inherit;
 }
 
-.page .container form input{
+.login .contain form input{
   border: 1px solid #dbdbdb;
   background-color: #fafafa;
   padding: 10px 5px;
   margin: 5px 0;
 }
 
-.page .container form input:last-of-type{
+.login .contain form input:last-of-type{
   margin-bottom: 10px;  
 }
 
-.page .container form button{
+.login .contain form button{
   width: inherit;
   margin-bottom: 20px;
   padding: 7px 20px;
@@ -94,18 +94,18 @@ main{
   color: #ffffff;
 }
 
-.page .container ul{
+.login .contain ul{
   list-style: none;
   text-align: center;
   margin-bottom: 10px;
 }
 
-.page .container ul li{
+.login .contain ul li{
   display: inline;
   color: #8e9096;
 }
 
-.page .container ul li a{
+.login .contain ul li a{
   text-decoration: none;
   font-weight: bold;
   color: #8e9096;
@@ -172,17 +172,17 @@ main{
         font-family: Freight Sans
     }
   
-  .page{
+  .login{
     width: 250px;
     background-color: #fafafa;
   }
   
-  .page .header{
+  .login .head{
     width: inherit;
     margin-top: 10px;
   }
   
-  .page .container{
+  .page .contain{
     width: inherit;
   }
   
@@ -190,7 +190,7 @@ main{
     margin: 80px 0;
   }
   
-  .page .container input{
+  .page .contain input{
     padding: 10px 5px;
     margin: 5px 0;
   }
@@ -211,12 +211,12 @@ main{
     margin: 40px 40px 10px 40px;
   }
   
-  .page .header{
+  .page .head{
     width: 270px;
     margin-top: 15px;
   }
   
-  .page .container{
+  .page .contain{
     width: 270px;
   }
   
