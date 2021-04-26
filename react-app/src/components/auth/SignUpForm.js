@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './signupform.css';
 
@@ -40,58 +40,72 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className='signup-page'>
-      <div className='signup-container'>
-        <div className="header-container">
-          <h1>Sign up for Quick Pics!</h1>
-        </div>
-          <form onSubmit={onSignUp}>
 
-          <div className="name-container">
-            <div>
-              <label>User Name</label>
-              <input
-                type="text"
-                name="username"
-                onChange={updateUsername}
-                value={username}
-              ></input>
-              </div>
-            </div>
-            
-            <div>
-              <label>Email</label>
+    <main>
+      <div className="page">
+        <div className="header">
+          <h1 className="logo">QuickPics</h1>
+          <p>Sign up to see photos and videos from your friends.</p>
+          <button><a href='//facebook.com'><i className="fab fa-facebook-square"/>Log in with Facebook</a></button>
+          <div>
+            <hr />
+            <p>OR</p>
+            <hr />
+          </div>
+        </div>
+        <div className="container">
+          <form onSubmit={onSignUp}>
+                <input
+                  type="text"
+                  name="username"
+                  onChange={updateUsername}
+                  value={username}
+                  placeholder={'Username'}/>
+
               <input
                 type="text"
                 name="email"
                 onChange={updateEmail}
                 value={email}
-              ></input>
-            </div>
-            <div>
-              <label>Password</label>
+                placeholder={'Email'}/>
+            
               <input
                 type="password"
                 name="password"
                 onChange={updatePassword}
                 value={password}
-              ></input>
-            </div>
-            <div>
-              <label>Repeat Password</label>
+                placeholder={'Password'}/>
+
               <input
                 type="password"
                 name="repeat_password"
                 onChange={updateRepeatPassword}
                 value={repeatPassword}
                 required={true}
-              ></input>
-            </div>
+                placeholder={'Confirm Password'}/>
+
             <button type="submit">Sign Up</button>
           </form>
+          {/* <form onSubmit={onSignUp}>
+            <input type="text" placeholder="Email" />
+            <input type="text" placeholder="Full Name" />
+            <input type="text" placeholder="Username" />
+            <input type="password" placeholder="Password" />
+            <button type="submit">Sign Up</button>
+          </form> */}
+          <ul>
+            <li>By signing up, you agree to our Terms, Data Policy and Cookies Policy</li>
+          </ul>
+        </div>
       </div>
-    </div>
+      <div className="option">
+        <p>Have an account? <NavLink to='/login'>Log in</NavLink></p>
+      </div>
+      <div className="footer">
+        <p>© 2021 QuickPics</p>
+      </div>
+    </main>
   );
-};
+}
 
 export default SignUpForm;
