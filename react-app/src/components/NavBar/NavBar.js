@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css'
+import pic from '../../images/QuickPics.png'
 
 
 const NavBar = () => {
@@ -13,7 +14,7 @@ const NavBar = () => {
     <nav>
       <ul className='nav'>
         <div>
-
+          <img className="siteTitle" src={pic} ></img>
         </div>
         <div>
           <i className="fas fa-search"></i>
