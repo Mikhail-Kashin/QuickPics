@@ -33,18 +33,20 @@ function App() {
           <SignUpForm />
         </Route>
       </Switch>
-      <NavBar />
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
         <ProtectedRoute path="/users" exact={true} >
-          <UsersList />
+          <NavBar />
+          <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true} >
+          <NavBar />
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
+          <NavBar />
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
