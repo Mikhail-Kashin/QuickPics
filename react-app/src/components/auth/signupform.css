@@ -117,25 +117,6 @@ main{
     color: #00a0f7;
 }
 
-/* otherapps style */
-.otherapps{
-  text-align: center;
-}
-
-.otherapps p{
-  margin-bottom: 15px;
-}
-
-.otherapps > button{
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  background-color: black;
-  color: white;
-  padding: 10px;
-  font-size: 18px;
-}
-
 /* footer style */
 .footer{
   bottom: 0;
@@ -230,18 +211,6 @@ main{
     align-items: center;
     justify-content: center;
     
-  }
-  
-  .otherapps{
-    margin: 20px 0;
-  }
-  
-  .otherapps button{
-    margin-right: 5px;
-  }
-  
-  .otherapps button:after-of-type{
-    margin-right: none;
   }
   
   .page .footer{
