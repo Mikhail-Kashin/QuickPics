@@ -1,0 +1,165 @@
+body, html {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;   
+    list-style: none;
+}
+
+
+.signup-page {
+    background-size: cover;
+    height: auto;
+    width: auto;
+    text-align: center;
+    padding-top: 100px;
+    background-color: black;
+}
+
+.signup-container {
+    font-family: Proxima Nova, Helvetica, sans-serif;
+    color: white;
+    font-size: 10px;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    background-color: white;
+    height: 600px;
+    width: 340px;
+    display: inline-block;
+    margin: 50px 50px 50px 50px;
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 400px;
+    border-radius: 3px;
+}
+
+.header-container {
+    background-color: white;
+    text-decoration: none;
+    text-align: center;
+    width: 335px;
+    border: none;
+    color: black;
+    font-family: Geneva, Verdana, sans-serif;
+    margin-top: 40px;
+    margin-bottom: -20px;
+}
+
+
+.name-container {
+    margin-top: 40px;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+.name-container:hover {
+    transform: scale(1.05)
+}
+
+.name-container input {
+    width: 275px;
+    border-radius: 5px;
+    height: 50px;
+    border: 0.5px solid black;
+}
+
+.email-container {
+    margin-top: 10px;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+.email-container:hover {
+    transform: scale(1.05);
+}
+
+.email-container input {
+    width: 275px;
+    border-radius: 5px;
+    height: 50px;
+    border: 0.5px solid black;
+}
+
+.username-container {
+    padding: 5px;
+    margin-top: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+.username-container:hover {
+    transform: scale(1.05);
+}
+
+.username-container input {
+    width: 275px;
+    border-radius: 5px;
+    height: 50px;
+    border: 0.5px solid black;
+}
+
+.password-container {
+    padding: 5px;
+    height: 30px;
+    margin-bottom: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+.password-container:hover {
+    transform: scale(1.05);
+}
+
+.password-container input {
+    width: 275px;
+    border-radius: 5px;
+    height: 50px;
+    border: 0.5px solid black;
+}
+
+.confirmpw-container {
+    padding: 5px;
+    margin-top: 27px;
+}
+
+.confirmpw-container input {
+    width: 275px;
+    border-radius: 5px;
+    height: 50px;
+    transition: all 0.2s ease-in-out;
+    border: 0.5px solid black;
+}
+
+.confirmpw-container:hover {
+    transform: scale(1.05);
+}
+
+button {
+    margin-top: 20px;
+    height: 40px;
+    width: 200px;
+    background-color: #218d84;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    border: none;
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.05)
+}
+
+.terms {
+    color: black;
+    overflow-wrap: normal;
+    font-size: 12px;
+    margin: 10px 35px;
+}
+
+.line {
+    color: rgba(128, 128, 128, 0.774);
+    font-size: 5px;
+}
+
+.already {
+    color: black;
+    overflow-wrap: normal;
+    font-size: 13px;
+    margin: 10px 35px;
+}

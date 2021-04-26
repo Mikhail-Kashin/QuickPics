@@ -8,9 +8,9 @@ class Post(db.Model):
   userId = db.Column(db.Integer,db.ForeignKey('users.id'),nullable = False)
   caption = db.Column(db.Text, nullable = False)
   comments = db.Column(db.Text, nullable = False)
-  comment = db.relationship('Comment', back_populates='posts')
+  # comment = db.relationship('Comment', back_populates='posts')
   imageUrl = db.Column(db.String, nullable = False)
-  user = db.relationship('User', back_populates='posts')
+  # user = db.relationship('User', back_populates='posts')
   created_at = db.Column(db.DateTime, nullable = False)
 
 
