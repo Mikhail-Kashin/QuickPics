@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "font-awesome": "^4.7.0",
     "react-redux": "^7.2.4",
     "redux": "^4.1.0",
     "redux-logger": "^3.0.6",

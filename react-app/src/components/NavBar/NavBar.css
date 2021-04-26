@@ -1,0 +1,11 @@
+.icon {
+    color: black;
+    text-decoration: none;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    max-height: 60px;
+    border-bottom: 4px solid lightgray;
+}
