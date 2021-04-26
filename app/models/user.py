@@ -9,8 +9,8 @@ class User(db.Model, UserMixin):
   username = db.Column(db.String(40), nullable = False, unique = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
-  posts = db.relationship('Post', back_populates ='users')
-  follow = db.relationship('Follow', back_populates='users')
+  # posts = db.relationship('Post', back_populates ='user')
+  # follow = db.relationship('Follow', back_populates='users')
 
 
   @property
