@@ -9,6 +9,8 @@ class User(db.Model, UserMixin):
   username = db.Column(db.String(40), nullable = False, unique = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
+  posts = db.relationship('Post', back_populates ='users')
+  follow = db.relationship('Follow', back_populates='users')
 
 
   @property
@@ -24,6 +26,8 @@ class User(db.Model, UserMixin):
   def check_password(self, password):
     return check_password_hash(self.password, password)
 
+  # def post_dict(self):
+  #   post = { p for p in self.posts }
 
   def to_dict(self):
     return {
