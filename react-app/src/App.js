@@ -9,6 +9,7 @@ import UsersList from "./components/User/UsersList";
 import User from "./components/User/User";
 // import { authenticate } from "./services/auth";
 import { authenticate } from "./store/session";
+import UploadPicture from "./components/upload/upload-img";
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -37,9 +38,12 @@ function App() {
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
+        <Route path='/upload' exact={true}>
+          <UploadPicture />
+        </Route>
         <ProtectedRoute path="/users" exact={true} >
           <NavBar />
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true} >
           <NavBar />
