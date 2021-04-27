@@ -1,11 +1,12 @@
 from flask import Blueprint, request
+# import time
 from app.models import db, Post
 from flask_login import current_user, login_required
 from app.AWS_upload import (
     upload_file_to_s3, allowed_file, get_unique_filename)
 
 image_routes = Blueprint("images", __name__)
-
+# ts = time.time()
 
 @image_routes.route("", methods=["POST"])
 @login_required
@@ -30,7 +31,7 @@ def upload_image():
 
     url = upload["url"]
     # flask_login allows us to get the current user from the request
-    new_image = Post(userId=current_user, imageUrl=url)
+    new_image = Post(userId=current_user.id, imageUrl=url)
     db.session.add(new_image)
     db.session.commit()
     return {"url": url}

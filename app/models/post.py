@@ -1,5 +1,7 @@
 from .db import db
 from .user import User
+from sqlalchemy.sql import func
+
 
 
 class Post(db.Model):
@@ -12,7 +14,7 @@ class Post(db.Model):
     # comment = db.relationship('Comment', back_populates='posts')
     imageUrl = db.Column(db.String, nullable=False)
     # user = db.relationship('User', back_populates='posts')
-    created_at = db.Column(db.DateTime, nullable=False)
+    createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
 
     def to_dict(self):
         return {
@@ -21,5 +23,5 @@ class Post(db.Model):
             "caption": self.caption,
             "comments": self.comments,
             "imageUrl": self.imageUrl,
-            "created_at": self.created_at
+            "createdAt": self.createdAt
         }

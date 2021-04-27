@@ -28,7 +28,7 @@ const UploadPicture = () => {
         if (res.ok) {
             await res.json();
             setImageLoading(false);
-            history.push("/home");
+            history.push("/");
         }
         else {
             setImageLoading(false);
