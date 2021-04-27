@@ -1,13 +1,13 @@
 from flask import Blueprint, request
-from app.models import db, Image
+from app.models import db, Post
 from flask_login import current_user, login_required
-from app.s3_helpers import (
+from app.AWS_upload import (
     upload_file_to_s3, allowed_file, get_unique_filename)
 
 image_routes = Blueprint("images", __name__)
 
 
-@image_routes.route("/upload", methods=["POST"])
+@image_routes.route("", methods=["POST"])
 @login_required
 def upload_image():
     if "image" not in request.files:
@@ -19,7 +19,7 @@ def upload_image():
         return {"errors": "file type not permitted"}, 400
 
     image.filename = get_unique_filename(image.filename)
-
+    print(image)
     upload = upload_file_to_s3(image)
 
     if "url" not in upload:
@@ -30,7 +30,7 @@ def upload_image():
 
     url = upload["url"]
     # flask_login allows us to get the current user from the request
-    new_image = Image(user=current_user, url=url)
+    new_image = Post(userId=current_user, imageUrl=url)
     db.session.add(new_image)
     db.session.commit()
     return {"url": url}
