@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import  { useDispatch, useSelector } from "react-redux";
 import { Redirect, NavLink } from "react-router-dom";
 import { login } from "../../store/session";
-import './loginform.module.css'
+import './loginform.css'
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -44,35 +44,30 @@ const LoginForm = () => {
           </div>
         </div>
         <div className="contain">
-      <form onSubmit={onLogin}>
-        <div>
-          {errors.map((error) => (
-            <div>{error}</div>
-          ))}
-        </div>
-        <div>
-          <input
-            name="email"
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={updateEmail}
-          />
-        </div>
-        <div>
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={updatePassword}
-          />
-        <div><button type="submit">Login</button></div>
-        </div>
-      </form>
-          <div className="not">
-            <p>Not a QuickPics member? <NavLink to='/sign-up'>Sign up here</NavLink></p>
-          </div>
+          <form onSubmit={onLogin}>
+              <input
+                name="email"
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={updateEmail}/>
+              <input
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={updatePassword}/>
+
+            <button type="submit">Login</button>
+                <div>
+                  {errors.map((error) => (
+                    <div>{error}</div>
+                  ))}
+                </div>
+          </form>
+              <div className="not">
+                <p>Not a QuickPics member? <NavLink to='/sign-up'>Sign up here</NavLink></p>
+              </div>
       </div>
       </div>
     </main>
