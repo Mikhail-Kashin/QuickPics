@@ -7,9 +7,9 @@ const UploadPicture = () => {
     const history = useHistory(); // so that we can redirect after the image upload is successful
     const [image, setImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false);
-    const userId = useSelector(state =>
-        state.session.user.id
-    )
+    // const userId = useSelector(state =>
+    //     state.session.user.id
+    // )
     const [caption, setCaption] = useState('');
 
     const handleSubmit = async (e) => {
@@ -44,26 +44,32 @@ const UploadPicture = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <p>HELLO</p>
-            <input
-                type="file"
-                accept="image/*"
-                onChange={updateImage}
-            />
-            <input
-                type='hidden'
-                value={userId}
-            />
-            <input
-                type='text'
-                placeholder='caption'
-                value={caption}
-                onChange={(e) => setCaption(e.target.value)}
-            />
-            <button type="submit">Submit</button>
-            {(imageLoading) && <p>Loading...</p>}
-        </form>
+        <main>
+            <div className='page'>
+                <div className='header'>
+                    <h1 className='logo'>Upload your photo!</h1>
+                    <p>Add a photo, write a caption, share with friends!</p>
+                </div>
+                <div className='container'>
+                    <form className='uploadForm' onSubmit={handleSubmit}>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={updateImage}
+                        />
+                        <textarea
+                            type='text'
+                            placeholder='Caption'
+                            value={caption}
+                            onChange={(e) => setCaption(e.target.value)}
+                        />
+                        <button type="submit">Submit</button>
+                        {(imageLoading) && <p>Loading...</p>}
+                    </form>
+                </div>
+            </div>
+        </main>
+
     )
 }
 

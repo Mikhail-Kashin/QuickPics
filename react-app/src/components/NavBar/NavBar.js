@@ -16,11 +16,15 @@ const NavBar = () => {
         <div>
           <img className="siteTitle" src={pic} ></img>
         </div>
-        <div>
+        {/* <div>
           <i className="fas fa-search"></i>
-        </div>
+        </div> */}
         <div>
           <NavLink to="/" className="fas fa-home icon" exact={true} activeClassName="active">
+          </NavLink>
+        </div>
+        <div>
+          <NavLink to="/upload" className="far fa-plus-square icon" exact={true} activeClassName="active">
           </NavLink>
         </div>
         {/* <li>
@@ -33,12 +37,12 @@ const NavBar = () => {
             Sign Up
           </NavLink>
         </li> */}
-        <div>
+        <div className='icon'>
           <NavLink to='/username' className='icon' exact={true} activeClassName="active">
             Profile
           </NavLink>
         </div>
-        <div>
+        <div className='icon'>
           <LogoutButton />
         </div>
       </ul>
