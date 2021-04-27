@@ -40,7 +40,6 @@ const SignUpForm = () => {
   }
 
   return (
-
     <main>
       <div className="page">
         <div className="header">
@@ -86,13 +85,6 @@ const SignUpForm = () => {
 
             <button type="submit">Sign Up</button>
           </form>
-          {/* <form onSubmit={onSignUp}>
-            <input type="text" placeholder="Email" />
-            <input type="text" placeholder="Full Name" />
-            <input type="text" placeholder="Username" />
-            <input type="password" placeholder="Password" />
-            <button type="submit">Sign Up</button>
-          </form> */}
           <ul>
             <li>By signing up, you agree to our Terms, Data Policy and Cookies Policy</li>
           </ul>

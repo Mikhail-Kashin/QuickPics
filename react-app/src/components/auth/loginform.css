@@ -111,29 +111,17 @@ main{
   color: #8e9096;
 }
 
-/* option style */
-.option p > a{
+/* not style */
+
+.not {
+  margin-left: -40px;
+  position: absolute;
+  margin-top: 190px;
+}
+
+.not p > a{
     text-decoration: none;
     color: #00a0f7;
-}
-
-/* otherapps style */
-.otherapps{
-  text-align: center;
-}
-
-.otherapps p{
-  margin-bottom: 15px;
-}
-
-.otherapps > button{
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  background-color: black;
-  color: white;
-  padding: 10px;
-  font-size: 18px;
 }
 
 /* footer style */
@@ -182,20 +170,20 @@ main{
     margin-top: 10px;
   }
   
-  .page .contain{
+  .login .contain{
     width: inherit;
   }
   
-  .option{
+  .not{
     margin: 80px 0;
   }
   
-  .page .contain input{
+  .login .contain input{
     padding: 10px 5px;
     margin: 5px 0;
   }
   
-  .page .footer{
+  .login .footer{
     width: inherith
   }
 }
@@ -204,23 +192,23 @@ main{
     body {
         font-family: Neue Helvetica
     }
-  .page{
+  .login{
     border: 1px solid #dbdbdb;
     width: 350px;
     background-color: white;
     margin: 40px 40px 10px 40px;
   }
   
-  .page .head{
+  .login .head{
     width: 270px;
     margin-top: 15px;
   }
   
-  .page .contain{
+  .login .contain{
     width: 270px;
   }
   
-  .option{
+  .not{
     border: 1px solid #dbdbdb;
     background-color: white;
     width: 350px;
@@ -232,19 +220,7 @@ main{
     
   }
   
-  .otherapps{
-    margin: 20px 0;
-  }
-  
-  .otherapps button{
-    margin-right: 5px;
-  }
-  
-  .otherapps button:after-of-type{
-    margin-right: none;
-  }
-  
-  .page .footer{
+  .login .footer{
     width: 100%;
   }
 }
