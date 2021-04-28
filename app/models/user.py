@@ -9,7 +9,7 @@ class User(db.Model, UserMixin):
   username = db.Column(db.String(40), nullable = False, unique = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
-  # posts = db.relationship('Post', back_populates ='user')
+  posts = db.relationship('Post', back_populates ='user')
   # follow = db.relationship('Follow', back_populates='users')
 
 
@@ -33,5 +33,13 @@ class User(db.Model, UserMixin):
     return {
       "id": self.id,
       "username": self.username,
-      "email": self.email
+      "email": self.email,
+    }
+
+  def to_user_dict(self):
+    return {
+      "id": self.id,
+      "username": self.username,
+      "email": self.email,
+      "posts": [post.to_simple_dict() for post in self.posts]
     }
