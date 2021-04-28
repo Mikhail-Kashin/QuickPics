@@ -9,4 +9,13 @@ profile_routes = Blueprint('profiles', __name__)
 @login_required
 def user_info(name):
     user = User.query.filter_by(username=name).first()
-    return user.to_user_dict()
+    following = {
+        follow.username: follow.username for follow in user.follows}
+    followers = {
+        followers.username: followers.username for followers in user.followers}
+    print('heyeheyheyeye', user.follows)
+
+    return {"userDict": user.to_user_dict(),
+            "following": following,
+            "followers": followers
+            }
