@@ -8,4 +8,5 @@ profile_routes = Blueprint('profiles', __name__)
 @login_required
 def user_info(name):
   user = User.query.filter_by(username=name).first()
-  return user.to_dict()
+
+  return user.to_user_dict()
