@@ -50,8 +50,9 @@ function App() {
           <NavBar />
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/profiles/:name' exact={true}>
-          <Profile/>
+        <ProtectedRoute path='/:name' exact={true}>
+          <NavBar />
+          <Profile />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
           <NavBar />
