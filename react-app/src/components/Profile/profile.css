@@ -121,53 +121,96 @@ bodyprofile {
     margin-left: 1rem;
 }
 
+.profile-stats {
+    margin-top: -1.3rem;
+    margin-bottom: 1.3rem;
+    margin-left: -10rem;
+    display: inline-block;
+    justify-content: space-between;
+}
+
+.profile-stat-post{
+    margin-left: 16px;
+}
+.profile-stat-followers{
+    margin-left: 16px;
+}
+.profile-stat-following{
+    margin-left: 16px;
+}
+
+.profile-stats li {
+    display: inline-block;
+    justify-content: space-around;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    padding: 5rem 5rem;
+    margin-left: -10rem;
+    cursor: pointer;
+}
+
+.profile-bio {
+    margin-top: 6.5rem;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-left: -15rem;
+}
+
 
 /* Gallery Section */
 .images-container {
-    display: flex;
-    /* flex-direction: row; */
     /* border: 1px solid black; */
-    max-width: 300rem;
-    max-height: 300rem;
-    overflow-y: scroll;
-    flex-wrap: wrap;
-    margin-left: 20rem;
-    margin-right: 20rem;
-    margin-top: 200px;
-    /* padding-left: 80rem; */
-    /* object-fit: contain; */
-    /* width: 100%; */
-    /* position: absolute; */
-    /* float: right; */
-    /* grid-template-columns: 2fr 2fr 2fr; */
-    /* grid-template-rows: auto; */
-    /* grid-template-areas: 
-    "img1 img2 img3"
-    ; */
-}
+    max-width: 100rem;
+    margin-top: 250px;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    position: relative;
+    float: right;
+} 
 
 .imagesList {
     display: flex;
     flex-direction: row;
-    overflow-x: auto;
-    /* flex-wrap: wrap; */
-    padding-left: 10px;
-    padding-right: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px 15px;
 }
 
-/* .gallery-item {
+.gallery-item {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-} */
+}
 
 .gallery-image {
-    width: 35rem;
-    height: 35rem;
+    width: 20rem;
+    height: 20rem;
     object-fit: cover;
     padding-left: 10px;
     padding-right: 10px;
 }
+
+/* @media screen and (max-width: 985px) {
+
+.images-container {
+    width: 30rem;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    max-width: 300rem;
+    max-height: 300rem;
+    overflow-y: scroll;
+    flex-wrap: wrap;
+    margin-left: 10rem;
+}
+
+.gallery-image {
+    width: 200px;
+    height: 200px;
+}
+
+} */
 
 /* .gallery-item, .gallery-item2, .gallery-item3 {
     flex: 1 0 22rem;
