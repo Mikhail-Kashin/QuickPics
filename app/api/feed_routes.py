@@ -9,9 +9,6 @@ feed_routes = Blueprint('feed', __name__)
 @feed_routes.route('')
 @login_required
 def user_feed():
-  currentUserPost = Post.query.filter_by(postsUsername=current_user)
-
-  currentuserid = current_user.id
   following = {
         follow.username: follow.username for follow in current_user.follows}
   followers = {
@@ -19,11 +16,8 @@ def user_feed():
   followerUsername = [key for key in following]
 
   followingPosts = Post.query.join(User).filter(User.username.in_(followerUsername)).all()
-  print('--------------------->', followingPosts)
+  print('--------------------->', followerUsername)
 
-  # [following.posts for following in current_user.following]
-
-  # followersPosts = Post.query.filter_by(postsUsername=for x followerUsername)
   return {"userDict": current_user.to_user_dict(),
               "following": following,
               "followers": followers,
