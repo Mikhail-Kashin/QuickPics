@@ -19,6 +19,7 @@ export const feedInfo = () => async (dispatch) => {
 const initialState = {
   followers: {},
   following: {},
+  followingPosts: [],
   userDict: {
       id: '',
       email: '',
