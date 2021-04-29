@@ -9,6 +9,7 @@ const getInfo = (info) => ({
 export const profileInfo = (name) => async (dispatch) => {
     const res = await fetch(`/api/profiles/${name}`);
     const user = await res.json();
+    console.log('..............>', user)
     if (res.ok) {
         await dispatch(getInfo(user));
     } else {
@@ -19,10 +20,14 @@ export const profileInfo = (name) => async (dispatch) => {
 }
 
 const initialState = {
-    id: '',
-    email: '',
-    posts: [],
-    username: ''
+    followers: {},
+    following: {},
+    userDict: {
+        id: '',
+        email: '',
+        posts: [],
+        username: ''
+    }
 };
 
 export default function profileReducer(state = initialState, action) {
