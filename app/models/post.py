@@ -8,6 +8,7 @@ class Post(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    postsUsername = db.relationship('User', back_populates='posts')
     caption = db.Column(db.Text)
     comments = db.Column(db.Text)
     # comment = db.relationship('Comment', back_populates='posts')
