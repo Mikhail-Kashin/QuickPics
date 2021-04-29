@@ -10,6 +10,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.upload_img import image_routes
 from .api.profile_routes import profile_routes
+from .api.feed_routes import feed_routes
 
 from .seeds import seed_commands
 
@@ -35,6 +36,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(image_routes, url_prefix='/api/upload')
 app.register_blueprint(profile_routes, url_prefix='/api/profiles')
+app.register_blueprint(feed_routes, url_prefix='/api/feed')
 db.init_app(app)
 Migrate(app, db, compare_type=True)
 

@@ -13,7 +13,7 @@ def user_info(name):
         follow.username: follow.username for follow in user.follows}
     followers = {
         followers.username: followers.username for followers in user.followers}
-    print('heyeheyheyeye', user.follows)
+    # print('--------------------->', user.follows)
 
     # return {user.to_user_dict() }
     return {"userDict": user.to_user_dict(),

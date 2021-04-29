@@ -8,7 +8,7 @@ function Profile() {
   const dispatch = useDispatch();
   let { name } = useParams();
   const profile = useSelector(state => state.profileReducer);
-  console.log('profile', profile)
+  // console.log('profile', profile)
 
   useEffect(() => {
     (async () => {
