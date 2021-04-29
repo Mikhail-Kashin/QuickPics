@@ -14,9 +14,9 @@ def user_info(name):
     followers = {
         followers.username: followers.username for followers in user.followers}
     print('heyeheyheyeye', user.follows)
-    
-    return user.to_user_dict()
-    # return {"userDict": user.to_user_dict(),
-    #         # "following": following,
-    #         # "followers": followers
-    #         # }
+
+    # return {user.to_user_dict() }
+    return {"userDict": user.to_user_dict(),
+            "following": following,
+            "followers": followers
+            }

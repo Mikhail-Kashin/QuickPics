@@ -33,7 +33,7 @@ function Profile() {
             <div className="gallery-item" tabIndex="0">
 
                 <ul className="imagesList">
-                  {profile.posts.slice(0).reverse().map((post) => {
+                  {profile.userDict.posts.slice(0).reverse().map((post) => {
                     return (
                       <li key={post.id}>
                         <a href=':username/:postId'>
