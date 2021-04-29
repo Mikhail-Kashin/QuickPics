@@ -8,7 +8,40 @@ function Profile() {
   const dispatch = useDispatch();
   let { name } = useParams();
   const profile = useSelector(state => state.profileReducer);
-  // console.log('profile', profile)
+  const username = useSelector(state => state.session.user.username)
+  // for (const followersNum in profile.followers) {
+  //   console.log('FINALLE', followersNum)
+  //   return followersNum;
+  // }
+  function countFollowers() {
+    const myFollowers = profile.followers;
+    let count = 0;
+    for (let x in myFollowers) {
+      if (myFollowers.hasOwnProperty(x)) {
+        ++count;
+      }
+    }
+    return count;
+  }
+
+  function countFollowing() {
+    const myFollowing = profile.following;
+    let count = 0;
+    for (let x in myFollowing) {
+      if (myFollowing.hasOwnProperty(x)) {
+        ++count;
+      }
+    }
+    return count;
+  }
+
+  function ifUserIsMe() {
+    if (username !== name) {
+      return (
+        <button className="btn profile-follow-btn">Follow</button>
+      )
+    }
+  }
 
   useEffect(() => {
     (async () => {
@@ -26,14 +59,16 @@ function Profile() {
 
           <button className="btn profile-edit-btn">Edit Profile</button>
 
-          <button className="btn profile-settings-btn" aria-label="profile settings"><i className="fas fa-cog" aria-hidden="true"></i></button>
+          {/* if I follow: show following in span   */}
+          {/* useParams to check against username and see if we follow them  */}
+          {ifUserIsMe()}
 
           <div className="profile-stats">
 
             <div>
-              <li><span className="profile-stat-post">{profile.userDict.posts.length}</span>posts</li>
-              <li><span className="profile-stat-followers">{profile.followers.length}</span>followers</li>
-              <li><span className="profile-stat-following">{profile.following.length}</span>following</li>
+              <li><span className="profile-stat-post"></span>{profile.userDict.posts.length} posts</li>
+              <li><span className="profile-stat-followers"></span>{countFollowers()} followers</li>
+              <li><span className="profile-stat-following"></span>{countFollowing()} following</li>
             </div>
 
           </div>
@@ -43,24 +78,24 @@ function Profile() {
             <p><span className="profile-real-name">{profile.userDict['username']}</span>{profile.userDict['bio']}</p>
 
           </div>
-          </div>
         </div>
+      </div>
       <main className='images-container'>
         <div className="gallery-item" tabIndex="0">
 
-            <div className="imagesList">
-              {profile.userDict.posts.slice(0).reverse().map((post, i) => {
-                return (
-                  <div key={post.id}>
-                    <a href=':username/:postId'>
-                      <img className='gallery-image' src={post.imageUrl} 
-                    
-                      ></img>
-                    </a>
-                  </div>
-                )
-              })}
-            </div>
+          <div className="imagesList">
+            {profile.userDict.posts.slice(0).reverse().map((post, i) => {
+              return (
+                <div key={post.id}>
+                  <a href=':username/:postId'>
+                    <img className='gallery-image' src={post.imageUrl}
+
+                    ></img>
+                  </a>
+                </div>
+              )
+            })}
+          </div>
 
         </div>
 
