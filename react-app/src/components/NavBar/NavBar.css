@@ -7,7 +7,14 @@
 
 .nav {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     max-height: 60px;
     border-bottom: 4px solid lightgray;
+    margin-top: -3rem;
+}
+
+.icon {
+   margin-left: 1rem;
+   margin-right: 1rem;
+
 }

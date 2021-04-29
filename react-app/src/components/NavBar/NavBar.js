@@ -4,18 +4,20 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css'
 import pic from '../../images/QuickPics.png'
+import { profileInfo } from '../../store/profile'
 
 
 const NavBar = () => {
-  // const sessionUser = useSelector(state => {
-  //   state.session.user
-  // })
+  const user = useSelector(state => state.session.user)
+
   return (
     <nav>
-      <ul className='nav'>
-        <div>
+      <div>
+        <NavLink to="/">
           <img className="siteTitle" src={pic} ></img>
-        </div>
+        </NavLink>
+      </div>
+      <ul className='nav'>
         {/* <div>
           <i className="fas fa-search"></i>
         </div> */}
@@ -27,23 +29,10 @@ const NavBar = () => {
           <NavLink to="/upload" className="far fa-plus-square icon" exact={true} activeClassName="active">
           </NavLink>
         </div>
-        {/* <li>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
+          <NavLink to={`/${user.username}`} className='fas fa-user-circle icon' exact={true} activeClassName="active">
           </NavLink>
-        </li>
-        <li>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
-          </NavLink>
-        </li> */}
         <div className='icon'>
-          <NavLink to='/username' className='icon' exact={true} activeClassName="active">
-            Profile
-          </NavLink>
-        </div>
-        <div className='icon'>
-          <LogoutButton />
+          <LogoutButton/>
         </div>
       </ul>
     </nav>
