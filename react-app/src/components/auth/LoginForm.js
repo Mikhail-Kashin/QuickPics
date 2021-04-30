@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import  { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect, NavLink } from "react-router-dom";
 import { login } from "../../store/session";
+import pic from '../../images/QuickPics.png'
 import './loginform.css'
 
 const LoginForm = () => {
@@ -35,8 +36,8 @@ const LoginForm = () => {
     <main>
       <div className="login">
         <div className="head">
-          <h1 className="logo1">QuickPics</h1>
-          <button><a href='//facebook.com'><i className="fab fa-facebook-square" />Log in with Facebook</a></button>
+          <img src={pic}></img>
+          <button><a href='//facebook.com'><i className="fab fa-facebook-square" />  Log in with Facebook</a></button>
           <div>
             <hr />
             <p>OR</p>
@@ -45,30 +46,30 @@ const LoginForm = () => {
         </div>
         <div className="contain">
           <form onSubmit={onLogin}>
-              <input
-                name="email"
-                type="text"
-                placeholder="Email"
-                value={email}
-                onChange={updateEmail}/>
-              <input
-                name="password"
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={updatePassword}/>
+            <input
+              name="email"
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={updateEmail} />
+            <input
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={updatePassword} />
 
             <button type="submit">Login</button>
-                <div>
-                  {errors.map((error) => (
-                    <div>{error}</div>
-                  ))}
-                </div>
+            <div>
+              {errors.map((error) => (
+                <div>{error}</div>
+              ))}
+            </div>
           </form>
-              <div className="not">
-                <p>Not a QuickPics member? <NavLink to='/sign-up'>Sign up here</NavLink></p>
-              </div>
-      </div>
+          <div className="not">
+            <p>Not a QuickPics member? <NavLink to='/sign-up'>Sign up here</NavLink></p>
+          </div>
+        </div>
       </div>
     </main>
   );

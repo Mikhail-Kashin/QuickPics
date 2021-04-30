@@ -144,6 +144,11 @@ main{
   font-size: 14px;
 }
 
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
 
 
 /* Mobile Styles */
