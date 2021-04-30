@@ -1,4 +1,4 @@
-
+/*
 bodyprofile {
     font-family: "Open Sans", Arial, sans-serif;
     min-height: 100vh;
@@ -7,7 +7,7 @@ bodyprofile {
     padding-bottom: 3rem;
     display: flex;
     flex-wrap: wrap;
-}
+} */
 .profileContainer{
     position: absolute;
     top: 10%;
@@ -32,7 +32,7 @@ bodyprofile {
     display: inline-block;
     font-size: 3rem;
     font-weight: 300;
-    margin-left:-9rem;
+    margin-left:-7rem;
 
 }
 
@@ -40,12 +40,15 @@ bodyprofile {
     font-weight: 600;
     border: 0.1rem solid #dbdbdb;
     border-radius: 0.3rem;
-    padding: 0 2rem;
+    padding: 1 2rem;
     position: absolute;
     top: 50%;
     left: 50%;
     margin-right: 60%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
+    margin-left:3rem;
+    width:7rem;
+    height:2rem;
 
 }
 
@@ -62,40 +65,38 @@ bodyprofile {
     left: 40%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    text-decoration:none;
-
 }
 
 .profile-stat-post{
-    margin-left: 16px;
+    margin-right: 1rem;
+    width:5rem;
 }
 .profile-stat-followers{
-    margin-left: 16px;
+    margin-right: 1rem;
+    width:5rem;
 }
 .profile-stat-following{
-    margin-left: 16px;
+    margin-left: 1rem;
+    width:5rem;
 }
 
 
-.profile-bio {
+/* .profile-bio {
     margin-top: 6.5rem;
     font-size: 1.6rem;
     font-weight: 400;
     line-height: 1.5;
     margin-left: -15rem;
-}
+} */
 
 
 /* Gallery Section */
 .images-container {
-    /* border: 1px solid black; */
-    display: flex;
     max-width: 100rem;
     margin-top: 250px;
     padding-left: 5rem;
     padding-right: 5rem;
     position: relative;
-    /* float: right; */
     align-items: center;
     justify-content: center;
 }
