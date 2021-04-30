@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css'
@@ -7,8 +7,25 @@ import pic from '../../images/QuickPics.png'
 import { profileInfo } from '../../store/profile'
 
 
+
 const NavBar = () => {
+  const dispatch = useDispatch();
+  const [currentUser, setCurrentUser] = useState({username:""})
   const user = useSelector(state => state.session.user)
+
+  useEffect(() => {
+    (async () => {
+      await dispatch(profileInfo(user))
+    })();
+  }, [user, dispatch]);
+
+  useEffect(() => {
+    (async () => {
+      if(user.username) {
+       await setCurrentUser(user)
+      }
+    })();
+  }, [user])
 
   return (
     <nav>
@@ -29,7 +46,7 @@ const NavBar = () => {
           <NavLink to="/upload" className="far fa-plus-square icon" exact={true} activeClassName="active">
           </NavLink>
         </div>
-          <NavLink to={`/${user.username}`} className='fas fa-user-circle icon' exact={true} activeClassName="active">
+          <NavLink to={`/${currentUser.username}`} className='fas fa-user-circle icon' exact={true} activeClassName="active">
           </NavLink>
         <div className='icon'>
           <LogoutButton/>
