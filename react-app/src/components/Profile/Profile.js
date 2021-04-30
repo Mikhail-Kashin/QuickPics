@@ -55,8 +55,10 @@ function Profile() {
       <div className='profileContainer'>
         <div className="profile-user-settings">
 
-          <h1 className="profile-user-name">{profile.userDict['username']}</h1>
+          <h1 className="profile-user-name">
+            {profile.userDict['username']}
             <button className="btn profile-edit-btn">Edit Profile</button>
+          </h1>
 
 
 
@@ -67,10 +69,10 @@ function Profile() {
           {/* <button className="btn profile-settings-btn" aria-label="profile settings"><i className="fas fa-cog" aria-hidden="true"></i></button> */}
           <div className="profile-stats">
 
-              <div className="profile-stat-post"> {profile.userDict.posts.length} posts</div>
-              <div className="profile-stat-followers"> {countFollowers()} followers</div>
-              <div className="profile-stat-following"> {countFollowing()} following</div>
-            </div>
+            <div className="profile-stat-post"> {profile.userDict.posts.length} posts</div>
+            <div className="profile-stat-followers">{countFollowers()} followers</div>
+            <div className="profile-stat-following">{countFollowing()} following</div>
+          </div>
 
           <div className="profile-bio">
 

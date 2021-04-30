@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, NavLink, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './signupform.css';
+import pic from '../../images/QuickPics.png'
+
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -43,9 +45,9 @@ const SignUpForm = () => {
     <main>
       <div className="page">
         <div className="header">
-          <h1 className="logo">QuickPics</h1>
+          <img src={pic}></img>
           <p>Sign up to see photos and videos from your friends.</p>
-          <button><a href='//facebook.com'><i className="fab fa-facebook-square"/>Log in with Facebook</a></button>
+          <button><a href='//facebook.com'><i className="fab fa-facebook-square" />  Log in with Facebook</a></button>
           <div>
             <hr />
             <p>OR</p>
@@ -54,34 +56,34 @@ const SignUpForm = () => {
         </div>
         <div className="container">
           <form onSubmit={onSignUp}>
-                <input
-                  type="text"
-                  name="username"
-                  onChange={updateUsername}
-                  value={username}
-                  placeholder={'Username'}/>
+            <input
+              type="text"
+              name="username"
+              onChange={updateUsername}
+              value={username}
+              placeholder={'Username'} />
 
-              <input
-                type="text"
-                name="email"
-                onChange={updateEmail}
-                value={email}
-                placeholder={'Email'}/>
-            
-              <input
-                type="password"
-                name="password"
-                onChange={updatePassword}
-                value={password}
-                placeholder={'Password'}/>
+            <input
+              type="text"
+              name="email"
+              onChange={updateEmail}
+              value={email}
+              placeholder={'Email'} />
 
-              <input
-                type="password"
-                name="repeat_password"
-                onChange={updateRepeatPassword}
-                value={repeatPassword}
-                required={true}
-                placeholder={'Confirm Password'}/>
+            <input
+              type="password"
+              name="password"
+              onChange={updatePassword}
+              value={password}
+              placeholder={'Password'} />
+
+            <input
+              type="password"
+              name="repeat_password"
+              onChange={updateRepeatPassword}
+              value={repeatPassword}
+              required={true}
+              placeholder={'Confirm Password'} />
 
             <button type="submit">Sign Up</button>
           </form>
