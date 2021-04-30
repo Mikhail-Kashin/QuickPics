@@ -3,18 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { profileInfo } from '../../store/profile'
 import './profile.css'
-
 function Profile() {
   const dispatch = useDispatch();
   let { name } = useParams();
-
-
-
   const profile = useSelector(state => state.profileReducer);
   const username = useSelector(state => state.session.user.username);
   const followersObj = profile.followers
-
-
   // for (const followersNum in profile.followers) {
   //   console.log('FINALLE', followersNum)
   //   return followersNum;
@@ -29,7 +23,6 @@ function Profile() {
     }
     return count;
   }
-
   function countFollowing() {
     const myFollowing = profile.following;
     let count = 0;
@@ -40,7 +33,6 @@ function Profile() {
     }
     return count;
   }
-
   function isFollowing() {
     console.log('-------->name', [name])
     let followersArr = Object.keys(followersObj)
@@ -52,10 +44,7 @@ function Profile() {
       console.log('this is false!!!!')
     }
   }
-
-
   // console.log(isFollowing())
-
   const FollowButton = async (e) => {
     e.preventDefault();
     const res = await fetch(`/api/profiles/follows/${name}`, {
@@ -63,7 +52,6 @@ function Profile() {
     })
     return await res.json
   }
-
   function ifUserIsMe() {
     if (username !== name && isFollowing() === true) {
       return (
@@ -76,13 +64,11 @@ function Profile() {
       )
     }
   }
-
   useEffect(() => {
     (async () => {
       await dispatch(profileInfo(name))
     })();
   }, [name, dispatch]);
-
   // if (profile.posts) {
   return (
     <div>
@@ -106,24 +92,19 @@ function Profile() {
       </div>
       <main className='images-container'>
         <div className="gallery-item" tabIndex="0">
-
           <div className="imagesList">
             {profile.userDict.posts.slice(0).reverse().map((post, i) => {
               return (
                 <div key={post.id}>
                   <a href=':username/:postId'>
                     <img className='gallery-image' src={post.imageUrl}
-
                     ></img>
                   </a>
                 </div>
               )
             })}
           </div>
-
-
         </div>
-
       </main>
     </div>
   );
