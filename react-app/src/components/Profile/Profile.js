@@ -53,6 +53,17 @@ function Profile() {
     }
   }
 
+
+  // console.log(isFollowing())
+
+  const FollowButton = async (e) => {
+    e.preventDefault();
+    const res = await fetch(`/api/profiles/follows/${name}`, {
+      method: "POST",
+    })
+    return await res.json
+  }
+
   function ifUserIsMe() {
     if (username !== name && isFollowing() === true) {
       return (
@@ -61,25 +72,9 @@ function Profile() {
     }
     else if (username !== name) {
       return (
-        <button className="btn profile-follow-btn">Follow</button>
+        <button className="btn profile-follow-btn" onClick={FollowButton}>Follow</button>
       )
     }
-    else if (username !== name && isFollowing() === false) {
-      return (
-        <button className="btn profile-follow-btn">Follow</button>
-      )
-    }
-  }
-
-  console.log(isFollowing())
-
-  const FollowButton = async (e) => {
-    e.preventDefault();
-
-    const following = {}
-    const res = await fetch(`/api/profiles/follows/${name}`, {
-      method: "POST",
-    })
   }
 
   useEffect(() => {
