@@ -22,4 +22,17 @@
   padding-bottom: 1rem;
   font-size: 1rem;
   padding-left: 1rem;
+  margin-top:-.3rem;
+}
+
+.feedUserName2{
+  color:black;
+  font-size: 1rem;
+  font-weight:bold;
+  margin-right: 5px;
+}
+
+.feedCaption{
+  font-size: 1rem;
+  font-weight: lighter;
 }

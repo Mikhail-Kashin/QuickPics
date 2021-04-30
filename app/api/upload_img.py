@@ -16,7 +16,7 @@ def upload_image():
         return {"errors": "image required"}, 400
 
     image = request.files["image"]
-
+    caption = request.form["caption"]
     if not allowed_file(image.filename):
         return {"errors": "file type not permitted"}, 400
 
@@ -32,7 +32,7 @@ def upload_image():
 
     url = upload["url"]
     # flask_login allows us to get the current user from the request
-    new_image = Post(userId=current_user.id, imageUrl=url)
+    new_image = Post(userId=current_user.id, imageUrl=url, caption=caption)
     db.session.add(new_image)
     db.session.commit()
     return {"url": url}

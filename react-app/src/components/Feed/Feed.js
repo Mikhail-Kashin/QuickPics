@@ -30,6 +30,10 @@ function Feed() {
                     <h1 className='far fa-user-circle feedUserName'>&nbsp;{post.user.username}</h1>
                   </NavLink>
                   <img className='feedImages'src={post.imageUrl}></img>
+                  <div className='feedUserName'>
+                    <NavLink to={`/${post.user.username}`}className='feedUserName2'>{post.user.username}</NavLink>
+                    <h1 className='feedCaption'>{post.caption}</h1>
+                  </div>
                 </a>
               </div>
             )
