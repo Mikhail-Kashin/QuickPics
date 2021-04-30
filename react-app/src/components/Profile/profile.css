@@ -1,13 +1,3 @@
-/*
-bodyprofile {
-    font-family: "Open Sans", Arial, sans-serif;
-    min-height: 100vh;
-    background-color: #fafafa;
-    color: #262626;
-    padding-bottom: 3rem;
-    display: flex;
-    flex-wrap: wrap;
-} */
 .profileContainer{
     position: absolute;
     top: 10%;
@@ -15,14 +5,6 @@ bodyprofile {
     margin-right: -50%;
     transform: translate(-50%, -50%)
 }
-
-/* .profile-user-settings,
-.profile-bio {
-    position: absolute;
-    top: 10%;
-    left: 35%;
-    width: calc(66.666% - 2rem);
-} */
 
 .profile-user-settings {
     margin-top: 1.1rem;
@@ -52,11 +34,6 @@ bodyprofile {
     height:2rem;
 
 }
-/*
-.profile-settings-btn {
-    font-size: 2rem;
-    margin-left: 1rem;
-} */
 
 .profile-stats {
     display:flex;
@@ -81,30 +58,29 @@ bodyprofile {
     width:5rem;
 }
 
-/* .profile-bio {
-    margin-top: 6.5rem;
-    font-size: 1.6rem;
-    font-weight: 400;
-    line-height: 1.5;
-    margin-left: -15rem;
-} */
-
 
 /* Gallery Section */
 .images-container {
     display:flex;
-    max-width: 100rem;
+    max-width: 1169px;
+    min-width: 1169px;
+    max-height: 700px;
+    /* min-height: 1000px; */
     padding-left: 5rem;
     padding-right: 5rem;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     margin-top:10rem;
-
-
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }
 
 .imagesList {
     display: flex;
+    max-width: 1169px;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
