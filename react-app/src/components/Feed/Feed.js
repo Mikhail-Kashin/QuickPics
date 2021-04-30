@@ -20,7 +20,7 @@ function Feed() {
     <div>
       <div className="feed-container">
         <div className="post">
-          {eachPost.map((post) => {
+          {eachPost.slice(0).reverse().map((post) => {
             console.log('---------------', post.user.username)
             return (
               <div>
