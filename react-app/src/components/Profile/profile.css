@@ -24,7 +24,6 @@
     border: 0.1rem solid #dbdbdb;
     border-radius: 0.3rem;
     padding: 1 2rem;
-    /* position: absolute; */
     top: 30%;
     left: 50%;
     margin-right: -50%;
@@ -62,29 +61,19 @@
 /* Gallery Section */
 .images-container {
     display:flex;
-    max-width: 1169px;
-    min-width: 1169px;
-    max-height: 700px;
-    /* min-height: 1000px; */
-    padding-left: 5rem;
-    padding-right: 5rem;
     justify-content: center;
     align-items: center;
-    margin-top:10rem;
-    position: absolute;
-    top: 80%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+    margin-top: 12rem;
+    
 }
 
 .imagesList {
     display: flex;
-    max-width: 1169px;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 15px 15px;
+    align-items: center;
+    padding: 15px 0px;
     border-top:1px solid rgb(231, 228, 228);
 }
 
@@ -100,4 +89,5 @@
     object-fit: cover;
     padding-left: 10px;
     padding-right: 10px;
+    padding-bottom: 10px;
 }

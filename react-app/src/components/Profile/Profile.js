@@ -47,7 +47,8 @@ function Profile() {
         <button className="btn profile-follow-btn">Follow</button>
       )
     }
-  }
+  } 
+
 
   function isFollowing(){
     console.log('-------->name', [name])
