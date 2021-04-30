@@ -22,7 +22,15 @@ def user_info(name):
             }
 
 
-@profile_routes.route('/follows/<name>', methods=['POST'])
-def user_follow_post(name):
-    
-    return()
+# @profile_routes.route('/follows/<name>', methods=['POST'])
+# def user_follow_post(name):
+#     user = User.query.filter_by(username=name).first()
+#     following = {
+#         follow.username: follow.username for follow in user.follows}
+#     followers = {
+#         followers.username: followers.username for followers in user.followers}
+#     selectedUser = following(name: name)
+#     name.following.append()
+#     db.session.add(selectedUser)
+#     db.session.commit()
+#     return(name)
