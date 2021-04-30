@@ -1,9 +1,14 @@
 const SELECTED_USER = 'SELECTED_USER';
-
+const FOLLOW_USER = 'FOLLOW_USER';
 
 const getInfo = (info) => ({
     type: SELECTED_USER,
     payload: info
+})
+
+const followUser = (data) => ({
+    type: FOLLOW_USER,
+    payload: data
 })
 
 export const profileInfo = (name) => async (dispatch) => {

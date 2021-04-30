@@ -20,3 +20,9 @@ def user_info(name):
             "following": following,
             "followers": followers
             }
+
+
+@profile_routes.route('/follows/<name>', methods=['POST'])
+def user_follow_post(name):
+    
+    return()
