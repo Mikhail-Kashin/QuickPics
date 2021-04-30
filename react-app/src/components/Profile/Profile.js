@@ -64,10 +64,22 @@ function Profile() {
         <button className="btn profile-follow-btn">Follow</button>
       )
     }
+  } 
+
+
+  function isFollowing(){
+    console.log('-------->name', [name])
+    let followersarr = Object.keys(followersObj)
+    console.log('-------->followersarr', followersarr)
+    if (followersarr.includes(username)){
+      console.log('this is true!!!!!!')
+    } else{
+      console.log('this is false!!!!')
     else if (username !== name && isFollowing() === false) {
       return (
         <button className="btn profile-follow-btn">Follow</button>
       )
+
     }
   }
 
