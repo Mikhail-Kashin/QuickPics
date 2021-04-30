@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom'
 import { feedInfo } from '../../store/feed';
+import './Feed.css'
 
 
 function Feed() {
@@ -8,7 +10,7 @@ function Feed() {
   const feed = useSelector(state => state.feedReducer);
   const eachPost = feed.followingPosts
 
-  // console.log("--------->eachPost", eachPost)
+
 
   useEffect(() => {
     (async () => {
@@ -21,12 +23,13 @@ function Feed() {
       <div className="feed-container">
         <div className="post">
           {eachPost.slice(0).reverse().map((post) => {
-            console.log('---------------', post.user.username)
             return (
-              <div>
-                <h1>{post.user.username}</h1>
+              <div className='feedContainer'>
                 <a>
-                  <img src={post.imageUrl}></img>
+                  <NavLink to={`/${post.user.username}`}>
+                    <h1 className='far fa-user-circle feedUserName'>&nbsp;{post.user.username}</h1>
+                  </NavLink>
+                  <img className='feedImages'src={post.imageUrl}></img>
                 </a>
               </div>
             )

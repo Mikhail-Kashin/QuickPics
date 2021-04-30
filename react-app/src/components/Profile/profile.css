@@ -92,12 +92,14 @@ bodyprofile {
 
 /* Gallery Section */
 .images-container {
+    display:flex;
     max-width: 100rem;
     padding-left: 5rem;
     padding-right: 5rem;
     align-items: center;
     justify-content: center;
     margin-top:10rem;
+
 
 }
 
