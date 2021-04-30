@@ -16,13 +16,13 @@ bodyprofile {
     transform: translate(-50%, -50%)
 }
 
-.profile-user-settings,
+/* .profile-user-settings,
 .profile-bio {
     position: absolute;
     top: 10%;
     left: 35%;
     width: calc(66.666% - 2rem);
-}
+} */
 
 .profile-user-settings {
     margin-top: 1.1rem;
@@ -32,7 +32,9 @@ bodyprofile {
     display: inline-block;
     font-size: 3rem;
     font-weight: 300;
-    margin-left:-7rem;
+    margin-right:1rem;
+    margin-top: 5rem;
+    padding-bottom: -5rem;
 }
 
 .profile-edit-btn {
@@ -40,27 +42,27 @@ bodyprofile {
     border: 0.1rem solid #dbdbdb;
     border-radius: 0.3rem;
     padding: 1 2rem;
-    position: absolute;
-    top: 50%;
+    /* position: absolute; */
+    top: 30%;
     left: 50%;
-    margin-right: 60%;
+    margin-right: -50%;
     transform: translate(-50%, -50%);
-    margin-left:3rem;
+    margin-left:5rem;
     width:7rem;
     height:2rem;
 
 }
-
+/*
 .profile-settings-btn {
     font-size: 2rem;
     margin-left: 1rem;
-}
+} */
 
 .profile-stats {
     display:flex;
     flex-direction: row;
     position: absolute;
-    top: 170%;
+    top: 120%;
     left: 40%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
@@ -91,12 +93,12 @@ bodyprofile {
 /* Gallery Section */
 .images-container {
     max-width: 100rem;
-    margin-top: 250px;
     padding-left: 5rem;
     padding-right: 5rem;
-    position: relative;
     align-items: center;
     justify-content: center;
+    margin-top:10rem;
+
 }
 
 .imagesList {
