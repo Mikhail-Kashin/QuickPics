@@ -7,8 +7,14 @@ import './profile.css'
 function Profile() {
   const dispatch = useDispatch();
   let { name } = useParams();
+
+
+
   const profile = useSelector(state => state.profileReducer);
-  const username = useSelector(state => state.session.user.username)
+  const username = useSelector(state => state.session.user.username);
+  const followersObj = profile.followers
+
+
   // for (const followersNum in profile.followers) {
   //   console.log('FINALLE', followersNum)
   //   return followersNum;
@@ -43,11 +49,33 @@ function Profile() {
     }
   }
 
+  function isFollowing(){
+    console.log('-------->name', [name])
+    let followersarr = Object.keys(followersObj)
+    console.log('-------->followersarr', followersarr)
+    if (followersarr.includes(username)){
+      console.log('this is true!!!!!!')
+    } else{
+      console.log('this is false!!!!')
+    }
+  }
+
+  console.log(isFollowing())
+
+  const FollowButton = async (e) => {
+    e.preventDefault();
+
+    const following = {}
+    const res = await fetch(`/api/profiles/follows/${name}`, {
+      method: "POST",
+    })
+  }
+
   useEffect(() => {
     (async () => {
       await dispatch(profileInfo(name))
     })();
-  }, [dispatch]);
+  }, [name, dispatch]);
 
   // if (profile.posts) {
   return (
