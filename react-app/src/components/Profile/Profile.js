@@ -41,22 +41,33 @@ function Profile() {
     return count;
   }
 
+  function isFollowing() {
+    console.log('-------->name', [name])
+    let followersArr = Object.keys(followersObj)
+    console.log('-------->followersarr', followersArr)
+    if (followersArr.includes(username)) {
+      console.log('this is true!!!!!!')
+      return true
+    } else {
+      console.log('this is false!!!!')
+    }
+  }
+
   function ifUserIsMe() {
-    if (username !== name) {
+    if (username !== name && isFollowing() === true) {
+      return (
+        <button className="btn profile-follow-btn">Following</button>
+      )
+    }
+    else if (username !== name) {
       return (
         <button className="btn profile-follow-btn">Follow</button>
       )
     }
-  }
-
-  function isFollowing(){
-    console.log('-------->name', [name])
-    let followersarr = Object.keys(followersObj)
-    console.log('-------->followersarr', followersarr)
-    if (followersarr.includes(username)){
-      console.log('this is true!!!!!!')
-    } else{
-      console.log('this is false!!!!')
+    else if (username !== name && isFollowing() === false) {
+      return (
+        <button className="btn profile-follow-btn">Follow</button>
+      )
     }
   }
 
@@ -81,22 +92,22 @@ function Profile() {
   return (
     <div>
       <div className='profileContainer'>
-          <h1 className="profile-user-name">
-            {profile.userDict['username']}
-            {/* <button className="btn profile-edit-btn">Edit Profile</button> */}
-          </h1>
-          {/* if I follow: show following in span   */}
-          {/* useParams to check against username and see if we follow them  */}
-          {ifUserIsMe()}
-          {/* <button className="btn profile-settings-btn" aria-label="profile settings"><i className="fas fa-cog" aria-hidden="true"></i></button> */}
-          <div className="profile-stats">
-            <div className="profile-stat-post"> {profile.userDict.posts.length} posts</div>
-            <div className="profile-stat-followers">{countFollowers()} followers</div>
-            <div className="profile-stat-following">{countFollowing()} following</div>
-          </div>
-          <div className="profile-bio">
-            {/* <p><span className="profile-real-name">{profile.userDict['username']}</span>{profile.userDict['bio']}</p> */}
-          </div>
+        <h1 className="profile-user-name">
+          {profile.userDict['username']}
+          {/* <button className="btn profile-edit-btn">Edit Profile</button> */}
+        </h1>
+        {/* if I follow: show following in span   */}
+        {/* useParams to check against username and see if we follow them  */}
+        {ifUserIsMe()}
+        {/* <button className="btn profile-settings-btn" aria-label="profile settings"><i className="fas fa-cog" aria-hidden="true"></i></button> */}
+        <div className="profile-stats">
+          <div className="profile-stat-post"> {profile.userDict.posts.length} posts</div>
+          <div className="profile-stat-followers">{countFollowers()} followers</div>
+          <div className="profile-stat-following">{countFollowing()} following</div>
+        </div>
+        <div className="profile-bio">
+          {/* <p><span className="profile-real-name">{profile.userDict['username']}</span>{profile.userDict['bio']}</p> */}
+        </div>
       </div>
       <main className='images-container'>
         <div className="gallery-item" tabIndex="0">
