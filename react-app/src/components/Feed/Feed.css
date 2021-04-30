@@ -1,0 +1,25 @@
+.feedImages{
+  width: 40rem;
+  height: 40rem;
+  object-fit: cover;
+}
+
+.feedContainer{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
+
+.feedUserName{
+  display:flex;
+  justify-content: flex-start;
+  position: relative;
+  color: black;
+  border: 1px solid lightgrey;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 1rem;
+  padding-left: 1rem;
+}
