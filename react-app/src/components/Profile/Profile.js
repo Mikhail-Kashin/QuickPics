@@ -65,17 +65,12 @@ function Profile() {
           {ifUserIsMe()}
 
           {/* <button className="btn profile-settings-btn" aria-label="profile settings"><i className="fas fa-cog" aria-hidden="true"></i></button> */}
-
-
           <div className="profile-stats">
 
-            <div>
-              <li><span className="profile-stat-post"></span>{profile.userDict.posts.length} posts</li>
-              <li><span className="profile-stat-followers"></span>{countFollowers()} followers</li>
-              <li><span className="profile-stat-following"></span>{countFollowing()} following</li>
+              <div className="profile-stat-post"> {profile.userDict.posts.length} posts</div>
+              <div className="profile-stat-followers"> {countFollowers()} followers</div>
+              <div className="profile-stat-following"> {countFollowing()} following</div>
             </div>
-
-          </div>
 
           <div className="profile-bio">
 
