@@ -52,16 +52,20 @@ function Profile() {
   // if (profile.posts) {
   return (
     <div>
-      <div className='container'>
+      <div className='profileContainer'>
         <div className="profile-user-settings">
 
           <h1 className="profile-user-name">{profile.userDict['username']}</h1>
+            <button className="btn profile-edit-btn">Edit Profile</button>
 
-          <button className="btn profile-edit-btn">Edit Profile</button>
+
 
           {/* if I follow: show following in span   */}
           {/* useParams to check against username and see if we follow them  */}
           {ifUserIsMe()}
+
+          {/* <button className="btn profile-settings-btn" aria-label="profile settings"><i className="fas fa-cog" aria-hidden="true"></i></button> */}
+
 
           <div className="profile-stats">
 
@@ -75,7 +79,7 @@ function Profile() {
 
           <div className="profile-bio">
 
-            <p><span className="profile-real-name">{profile.userDict['username']}</span>{profile.userDict['bio']}</p>
+            {/* <p><span className="profile-real-name">{profile.userDict['username']}</span>{profile.userDict['bio']}</p> */}
 
           </div>
         </div>
@@ -96,6 +100,7 @@ function Profile() {
               )
             })}
           </div>
+
 
         </div>
 
