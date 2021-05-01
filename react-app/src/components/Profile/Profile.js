@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-import { profileInfo } from '../../store/profile'
+import { profileInfo, followersData } from '../../store/profile'
 import './profile.css'
 function Profile() {
   const dispatch = useDispatch();
@@ -9,10 +9,9 @@ function Profile() {
   const profile = useSelector(state => state.profileReducer);
   const username = useSelector(state => state.session.user.username);
   const followersObj = profile.followers
-  // for (const followersNum in profile.followers) {
-  //   console.log('FINALLE', followersNum)
-  //   return followersNum;
-  // }
+  const followingObj = profile.following
+  console.log('weeeeeeee', followersObj, followingObj)
+
   function countFollowers() {
     const myFollowers = profile.followers;
     let count = 0;
@@ -34,9 +33,9 @@ function Profile() {
     return count;
   }
   function isFollowing() {
-    console.log('-------->name', [name])
+    // console.log('-------->name', [name])
     let followersArr = Object.keys(followersObj)
-    console.log('-------->followersarr', followersArr)
+    // console.log('-------->followersarr', followersArr)
     if (followersArr.includes(username)) {
       console.log('this is true!!!!!!')
       return true
@@ -48,14 +47,27 @@ function Profile() {
   const FollowButton = async (e) => {
     e.preventDefault();
     const res = await fetch(`/api/profiles/follows/${name}`, {
-      method: "POST",
+      method: "POST"
     })
-    return await res.json
+     const data = await res.json()
+    //  console.log("---------->data", data)
+     return (data)
   }
+
+  const UnFollowButton = async (e) => {
+    e.preventDefault();
+    const res = await fetch(`/api/profiles/unfollows/${name}`, {
+      method: "POST"
+    })
+     const data = await res.json()
+    //  console.log("---------->data", data)
+     return (data)
+  }
+
   function ifUserIsMe() {
     if (username !== name && isFollowing() === true) {
       return (
-        <button className="btn profile-follow-btn">Following</button>
+        <button className="btn profile-follow-btn" onClick={UnFollowButton}>Following</button>
       )
     }
     else if (username !== name) {
@@ -64,12 +76,16 @@ function Profile() {
       )
     }
   }
+
+
   useEffect(() => {
     (async () => {
-      await dispatch(profileInfo(name))
+      await dispatch(profileInfo(name, followersObj, followingObj))
     })();
-  }, [name, dispatch]);
-  // if (profile.posts) {
+  }, [name, followersObj, followingObj, dispatch]);
+
+
+
   return (
     <div>
       <div className='profileContainer'>
