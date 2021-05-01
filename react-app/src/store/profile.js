@@ -1,20 +1,32 @@
 const SELECTED_USER = 'SELECTED_USER';
-const FOLLOW_USER = 'FOLLOW_USER';
+const FOLLOW_DATA = 'FOLLOW_DATA';
 
 const getInfo = (info) => ({
     type: SELECTED_USER,
     payload: info
 })
 
-const followUser = (data) => ({
-    type: FOLLOW_USER,
+const followData = (data) => ({
+    type: FOLLOW_DATA,
     payload: data
 })
+
+export const followersData = (name) => async(dispatch) => {
+    const res = await fetch(`/api/profiles/${name}`)
+    const followInfo = await res.json();
+    // console.log('..............>', followInfo)
+    if (res.ok) {
+        await dispatch(followData(followInfo));
+    } else {
+        console.log('ressssssss', res)
+        throw res
+    }
+}
 
 export const profileInfo = (name) => async (dispatch) => {
     const res = await fetch(`/api/profiles/${name}`);
     const user = await res.json();
-    console.log('..............>', user)
+    console.log('..............>user', user)
     if (res.ok) {
         await dispatch(getInfo(user));
     } else {
@@ -40,7 +52,9 @@ export default function profileReducer(state = initialState, action) {
         case SELECTED_USER:
             const newState = { ...action.payload }
             return newState
-        // return { name: action.payload };
+        case FOLLOW_DATA:
+            const newInfo = { ...action.payload }
+            return newInfo
         default:
             return state;
     }

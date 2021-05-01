@@ -13,6 +13,8 @@ def user_info(name):
         follow.username: follow.username for follow in user.follows}
     followers = {
         followers.username: followers.username for followers in user.followers}
+    # print('--------------------->following',following)
+    # print('--------------------->current_user', current_user)
     # print('--------------------->', user.follows)
 
     # return {user.to_user_dict() }
@@ -22,15 +24,22 @@ def user_info(name):
             }
 
 
-# @profile_routes.route('/follows/<name>', methods=['POST'])
-# def user_follow_post(name):
-#     user = User.query.filter_by(username=name).first()
-#     following = {
-#         follow.username: follow.username for follow in user.follows}
-#     followers = {
-#         followers.username: followers.username for followers in user.followers}
-#     selectedUser = following(name: name)
-#     name.following.append()
-#     db.session.add(selectedUser)
-#     db.session.commit()
-#     return(name)
+@profile_routes.route('/follows/<name>', methods=['POST'])
+def user_follow_post(name):
+    print('----->name', name)
+    user = User.query.filter_by(username=name).first()
+    current_user.follows.append(user)
+    db.session.add(current_user)
+    db.session.commit()
+    return({'user': user.username})
+
+
+
+@profile_routes.route('/unfollows/<name>', methods=['POST'])
+def user_unfollow_post(name):
+    print('----->name', name)
+    user = User.query.filter_by(username=name).first()
+    current_user.follows.remove(user)
+    db.session.add(current_user)
+    db.session.commit()
+    return({'user': user.username})
