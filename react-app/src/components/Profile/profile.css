@@ -60,11 +60,10 @@
 
 /* Gallery Section */
 .images-container {
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 12rem;
-    
 }
 
 .imagesList {

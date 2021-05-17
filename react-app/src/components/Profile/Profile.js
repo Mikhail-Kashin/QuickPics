@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-import { profileInfo, followersData } from '../../store/profile'
-import './profile.css'
+import { profileInfo, followersData } from '../../store/profile';
+import './profile.css';
+
 function Profile() {
   const dispatch = useDispatch();
   let { name } = useParams();
@@ -49,9 +50,9 @@ function Profile() {
     const res = await fetch(`/api/profiles/follows/${name}`, {
       method: "POST"
     })
-     const data = await res.json()
+    const data = await res.json()
     //  console.log("---------->data", data)
-     return (data)
+    return (data)
   }
 
   const UnFollowButton = async (e) => {
@@ -59,9 +60,9 @@ function Profile() {
     const res = await fetch(`/api/profiles/unfollows/${name}`, {
       method: "POST"
     })
-     const data = await res.json()
+    const data = await res.json()
     //  console.log("---------->data", data)
-     return (data)
+    return (data)
   }
 
   function ifUserIsMe() {
