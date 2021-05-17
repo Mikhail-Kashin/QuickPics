@@ -11,7 +11,6 @@ function Feed() {
   const eachPost = feed.followingPosts
 
 
-
   useEffect(() => {
     (async () => {
       await dispatch(feedInfo())
@@ -29,9 +28,9 @@ function Feed() {
                   <NavLink to={`/${post.user.username}`}>
                     <h1 className='far fa-user-circle feedUserName'>&nbsp;{post.user.username}</h1>
                   </NavLink>
-                  <img className='feedImages'src={post.imageUrl}></img>
+                  <img className='feedImages' src={post.imageUrl}></img>
                   <div className='feedUserName'>
-                    <NavLink to={`/${post.user.username}`}className='feedUserName2'>{post.user.username}</NavLink>
+                    <NavLink to={`/${post.user.username}`} className='feedUserName2'>{post.user.username}</NavLink>
                     <h1 className='feedCaption'>{post.caption}</h1>
                   </div>
                 </a>
