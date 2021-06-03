@@ -1,17 +1,15 @@
 const USER_FEED = 'USER_FEED';
 
-
 const getFeed = (feed) => ({
   type: USER_FEED,
   payload: feed
 })
 
-
 export const feedInfo = () => async (dispatch) => {
   const res = await fetch('/api/feed');
   const data = await res.json();
   console.log('----------->feedthunk', data)
-  if (res.ok){
+  if (res.ok) {
     await dispatch(getFeed(data))
   }
 }
@@ -21,10 +19,10 @@ const initialState = {
   following: {},
   followingPosts: [],
   userDict: {
-      id: '',
-      email: '',
-      posts: [],
-      username: ''
+    id: '',
+    email: '',
+    posts: [],
+    username: ''
   }
 };
 
