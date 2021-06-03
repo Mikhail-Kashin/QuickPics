@@ -1,0 +1,228 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: #fafafa;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+.login .head{
+  text-align: center;
+}
+
+.login .head .logo1,
+.login .head p,
+.login .head button{
+  margin-bottom: 15px;
+}
+
+.login .head > p{
+  font-weight: bold;
+  color: #8e8e8e;
+  font-size: 18px;
+}
+
+.login .head > button{
+  width: inherit;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #0095f6;
+  color: #ffffff;
+}
+
+.login .head div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #8e8e8e;
+}
+
+.login .head div p{
+  padding: 0 20px;
+}
+
+.login .head div hr{
+  width: 200px;
+
+}
+
+/* contain style*/
+.login .contain{
+  display: flex;
+  flex-direction: column;
+}
+
+.login .contain form, input{
+  width: inherit;
+}
+
+.login .contain form input{
+  border: 1px solid #dbdbdb;
+  background-color: #fafafa;
+  padding: 10px 5px;
+  margin: 5px 0;
+}
+
+.login .contain form input:last-of-type{
+  margin-bottom: 10px;
+}
+
+.login .contain form button{
+  width: inherit;
+  margin-bottom: 20px;
+  padding: 7px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #0095f6;
+  color: #ffffff;
+}
+
+.login .contain ul{
+  list-style: none;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.login .contain ul li{
+  display: inline;
+  color: #8e9096;
+}
+
+.login .contain ul li a{
+  text-decoration: none;
+  font-weight: bold;
+  color: #8e9096;
+}
+
+.not {
+  margin-left: -40px;
+  position: absolute;
+  margin-top: 190px;
+}
+
+.not p > a{
+    text-decoration: none;
+    color: #00a0f7;
+}
+
+/* footer style */
+.footer{
+  bottom: 0;
+  height: 2.5rem;
+  margin-top: 50px;
+}
+
+.footer ul{
+  text-align: center;
+}
+.footer ul li{
+  display: inline;
+  margin-right: 5px;
+}
+.footer ul li a{
+  text-decoration: none;
+  font-size: 12px;
+  color: #00376b;
+}
+
+.footer p{
+  margin: 10px 0;
+  text-align: center;
+  color: #8e9096;
+  font-size: 14px;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+
+
+/* Mobile Styles */
+
+@media only screen and (max-width: 400px) {
+    body {
+        font-family: Freight Sans
+    }
+
+  .login{
+    width: 250px;
+    background-color: #fafafa;
+  }
+
+  .login .head{
+    width: inherit;
+    margin-top: 10px;
+  }
+
+  .login .contain{
+    width: inherit;
+  }
+
+  .not{
+    margin: 80px 0;
+  }
+
+  .login .contain input{
+    padding: 10px 5px;
+    margin: 5px 0;
+  }
+
+  .login .footer{
+    width: inherith
+  }
+}
+
+@media only screen and (min-width: 401px){
+    body {
+        font-family: Neue Helvetica
+    }
+  .login{
+    border: 1px solid #dbdbdb;
+    width: 350px;
+    background-color: white;
+    margin: 40px 40px 10px 40px;
+  }
+
+  .login .head{
+    width: 270px;
+    margin-top: 15px;
+  }
+
+  .login .contain{
+    width: 270px;
+  }
+
+  .not{
+    border: 1px solid #dbdbdb;
+    background-color: white;
+    width: 350px;
+    height: 70px;
+    margin-top: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  .login .footer{
+    width: 100%;
+  }
+}
