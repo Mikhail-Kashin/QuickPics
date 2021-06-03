@@ -32,3 +32,11 @@ def like_post(id):
     db.session.add(like)
     db.session.commit()
     return {}
+
+@feed_routes.route('/delete/like/<likeId>', methods=["DELETE"])
+@login_required
+def delete_like(likeId):
+    like = Like.query.get(likeId)
+    db.session.delete(like)
+    db.session.commit()
+    return {}

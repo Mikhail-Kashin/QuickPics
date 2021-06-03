@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom'
-import { feedInfo, likePost } from '../../store/feed';
+import { feedInfo, likePost, unLikePost } from '../../store/feed';
 import './Feed.css'
 
 
@@ -23,6 +23,22 @@ function Feed() {
     dispatch(feedInfo())
   }
 
+  const yourLike = (like) => {
+    if(like?.length > 0) {
+      for(let i = 0; i < like.length; i++) {
+        if(like[i].userId === userId) {
+          return like[i].id
+        }
+      }
+    }
+  }
+
+  async function unLike(like) {
+    const likeId = yourLike(like);
+    await dispatch(unLikePost(likeId))
+    dispatch(feedInfo())
+  }
+
   return (
     <div>
       <div className="feed-container">
@@ -38,6 +54,7 @@ function Feed() {
                   <div className='feedUserName'>
                     <NavLink to={`/${post.user.username}`} className='feedUserName2'>{post.user.username}</NavLink>
                     <button onClick={() => like(userId, post.id)}>Like</button>
+                    <button onClick={() => unLike(post?.likes)}>unLike</button>
                     <h1 className='feedCaption'>{post.caption}</h1>
                   </div>
                 </a>

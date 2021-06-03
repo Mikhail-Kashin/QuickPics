@@ -24,6 +24,15 @@ export const likePost = (userId, postId) => async (dispatch) => {
   return "liked"
 }
 
+export const unLikePost = (likeId) => async dispatch => {
+  const res = await fetch(`/api/feed/delete/like/${likeId}`, {
+    method: "DELETE",
+    likeId
+  })
+  const data = await res.json()
+  return "unliked"
+}
+
 const initialState = {
   followers: {},
   following: {},
