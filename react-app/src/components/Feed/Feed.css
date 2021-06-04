@@ -15,6 +15,7 @@
 .feedUserName{
   display:flex;
   justify-content: flex-start;
+  flex-direction: column;
   position: relative;
   color: black;
   border: 1px solid lightgrey;
@@ -35,4 +36,13 @@
 .feedCaption{
   font-size: 1rem;
   font-weight: lighter;
+}
+
+.unlike {
+  color: red;
+}
+
+.likeCounter{
+  margin-top:.7rem;
+  margin-bottom: .7rem;
 }
