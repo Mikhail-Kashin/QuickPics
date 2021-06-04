@@ -18,7 +18,6 @@ def user_feed():
     followingPosts = Post.query.join(User).filter(
         User.username.in_(followerUsername)).all()
 
-
     return {"userDict": current_user.to_user_dict(),
             "following": following,
             "followers": followers,
