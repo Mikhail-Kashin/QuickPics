@@ -18,11 +18,14 @@ def user_feed():
     followingPosts = Post.query.join(User).filter(
         User.username.in_(followerUsername)).all()
 
+    myPosts = User.query.get()
+
     return {"userDict": current_user.to_user_dict(),
             "following": following,
             "followers": followers,
             'followingPosts': [post.to_dict() for post in followingPosts]
             }
+
 
 @feed_routes.route('/like/<id>', methods=["POST"])
 @login_required
@@ -31,6 +34,7 @@ def like_post(id):
     db.session.add(like)
     db.session.commit()
     return {}
+
 
 @feed_routes.route('/delete/like/<likeId>', methods=["DELETE"])
 @login_required
