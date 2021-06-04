@@ -13,6 +13,15 @@ function Profile() {
   const followersObj = profile.followers
   const followingObj = profile.following
   const userId = useSelector(state => state.session.user.id)
+  const [followClicked, setFollowClicked] = useState(false)
+  console.log('testingfollowclick', followClicked)
+
+  // const followBtn =document.getElementsByClassName('.profile-stat-followers')
+  // if (followBtn){
+  //   followBtn.addEventListener('click', () =>{
+  //     setFollowClicked(true)
+  //   })
+  // }
 
   function countFollowers() {
     const myFollowers = profile.followers;
@@ -53,8 +62,11 @@ function Profile() {
     })
     const data = await res.json()
     //  console.log("---------->data", data)
+    dispatch(profileInfo(name, followersObj, followingObj))
     return (data)
   }
+
+
 
   const UnFollowButton = async (e) => {
     e.preventDefault();
@@ -63,7 +75,8 @@ function Profile() {
     })
     const data = await res.json()
     //  console.log("---------->data", data)
-    return (data)
+    dispatch(profileInfo(name, followersObj, followingObj))
+    return   (data)
   }
 
   function ifUserIsMe() {
@@ -81,10 +94,9 @@ function Profile() {
 
 
   useEffect(() => {
-    (async () => {
-      await dispatch(profileInfo(name, followersObj, followingObj))
-    })();
-  }, [name, followersObj, followingObj, dispatch]);
+    dispatch (profileInfo(name, followersObj, followingObj)
+    )
+  }, [name, dispatch]);
 
   const yourLike = (like) => {
     if(like?.length > 0) {
