@@ -15,10 +15,7 @@
 .feedUserName{
   display:flex;
   justify-content: flex-start;
-<<<<<<< HEAD
   flex-direction: column;
-=======
->>>>>>> 8e2a3623938b7c559a46ebf41fb0c7909206fb7b
   position: relative;
   color: black;
   border: 1px solid lightgrey;
@@ -40,7 +37,6 @@
   font-size: 1rem;
   font-weight: lighter;
 }
-<<<<<<< HEAD
 
 .unlike {
   color: red;
@@ -50,5 +46,3 @@
   margin-top:.7rem;
   margin-bottom: .7rem;
 }
-=======
->>>>>>> 8e2a3623938b7c559a46ebf41fb0c7909206fb7b

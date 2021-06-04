@@ -18,10 +18,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     posts = db.relationship('Post', back_populates='user')
-<<<<<<< HEAD
     likes = db.relationship('Like', back_populates='user')
-=======
->>>>>>> 8e2a3623938b7c559a46ebf41fb0c7909206fb7b
     followers = db.relationship(
         "User",
         secondary=follows,

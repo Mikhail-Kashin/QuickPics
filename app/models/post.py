@@ -11,10 +11,7 @@ class Post(db.Model):
     postsUsername = db.relationship('User', back_populates='posts')
     caption = db.Column(db.Text)
     comments = db.Column(db.Text)
-<<<<<<< HEAD
     likes = db.relationship('Like', back_populates='posts', cascade="all, delete", passive_deletes=True)
-=======
->>>>>>> 8e2a3623938b7c559a46ebf41fb0c7909206fb7b
     # comment = db.relationship('Comment', back_populates='posts')
     imageUrl = db.Column(db.String, nullable=False)
     user = db.relationship('User', back_populates='posts')
@@ -28,12 +25,8 @@ class Post(db.Model):
             "caption": self.caption,
             "comments": self.comments,
             "imageUrl": self.imageUrl,
-<<<<<<< HEAD
             "createdAt": self.createdAt,
             "likes": [like.to_dict() for like in self.likes]
-=======
-            "createdAt": self.createdAt
->>>>>>> 8e2a3623938b7c559a46ebf41fb0c7909206fb7b
         }
 
     def to_simple_dict(self):
@@ -42,10 +35,6 @@ class Post(db.Model):
             "caption": self.caption,
             "comments": self.comments,
             "imageUrl": self.imageUrl,
-<<<<<<< HEAD
             "createdAt": self.createdAt,
             "likes": [like.to_dict() for like in self.likes]
-=======
-            "createdAt": self.createdAt
->>>>>>> 8e2a3623938b7c559a46ebf41fb0c7909206fb7b
         }

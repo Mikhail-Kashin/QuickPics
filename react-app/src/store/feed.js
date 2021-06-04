@@ -14,7 +14,6 @@ export const feedInfo = () => async (dispatch) => {
   }
 }
 
-<<<<<<< HEAD
 export const likePost = (userId, postId) => async (dispatch) => {
   const res = await fetch(`/api/feed/like/${postId}`, {
     method: "POST",
@@ -36,8 +35,6 @@ export const unLikePost = (likeId) => async dispatch => {
 
 
 
-=======
->>>>>>> 8e2a3623938b7c559a46ebf41fb0c7909206fb7b
 const initialState = {
   followers: {},
   following: {},
