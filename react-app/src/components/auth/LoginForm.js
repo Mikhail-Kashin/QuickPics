@@ -20,6 +20,14 @@ const LoginForm = () => {
     }
   };
 
+  const onDemoLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data.errors) {
+      setErrors(data.errors);
+    }
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -37,7 +45,8 @@ const LoginForm = () => {
       <div className="login">
         <div className="head">
           <img src={pic}></img>
-          <button><a href='//facebook.com'><i className="fab fa-facebook-square" />  Log in with Facebook</a></button>
+          {/* <button><a href='//facebook.com'><i className="fab fa-facebook-square" />  Log in with Facebook</a></button> */}
+          <button onClick={onDemoLogin}>Demo User</button>
           <div>
             <hr />
             <p>OR</p>
