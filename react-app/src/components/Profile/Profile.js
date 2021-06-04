@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { profileInfo, followersData } from '../../store/profile';
+import { likePost, unLikePost } from '../../store/feed';
 import './profile.css';
 
 function Profile() {
@@ -11,7 +12,7 @@ function Profile() {
   const username = useSelector(state => state.session.user.username);
   const followersObj = profile.followers
   const followingObj = profile.following
-  console.log('weeeeeeee', followersObj, followingObj)
+  const userId = useSelector(state => state.session.user.id)
 
   function countFollowers() {
     const myFollowers = profile.followers;
@@ -85,6 +86,41 @@ function Profile() {
     })();
   }, [name, followersObj, followingObj, dispatch]);
 
+  const yourLike = (like) => {
+    if(like?.length > 0) {
+      for(let i = 0; i < like.length; i++) {
+        if(like[i].userId === userId) {
+          return like[i].id
+        }
+      }
+    }
+  }
+
+  const likeCheck = (likeArr, postId, userId) => {
+    if(likeArr?.length > 0) {
+      for(let i = 0; i < likeArr.length; i++) {
+        if(likeArr[i].userId === userId) {
+          return (
+            <div className="fas fa-heart unlike" onClick={() => unLike(likeArr)}></div>
+          )
+        }
+      }
+    }
+    return (
+      <div className="far fa-heart like" onClick={() => like(userId,postId)}></div>
+    )
+  }
+
+  async function unLike(like) {
+    const likeId = yourLike(like);
+    await dispatch(unLikePost(likeId))
+    dispatch(profileInfo(name, followersObj, followingObj))
+  }
+
+  async function like(userId, postId) {
+    await dispatch(likePost(userId, postId))
+    dispatch(profileInfo(name, followersObj, followingObj))
+  }
 
 
   return (
@@ -113,10 +149,14 @@ function Profile() {
             {profile.userDict.posts.slice(0).reverse().map((post, i) => {
               return (
                 <div key={post.id}>
-                  <a href=':username/:postId'>
+                  <div>
                     <img className='gallery-image' src={post.imageUrl}
                     ></img>
-                  </a>
+                  </div>
+                    <div className='profileLikes'>
+                    {likeCheck(post.likes, post.id, userId)}
+                    <h5>Liked by {post.likes.length} user</h5>
+                    </div>
                 </div>
               )
             })}
