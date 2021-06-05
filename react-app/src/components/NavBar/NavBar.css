@@ -19,8 +19,16 @@
 
 }
 
-.searchBar{
+.searchBarNav{
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-self:flex-end;
+    bottom: 2rem;
+    margin-top: 2.4rem;
+    margin-bottom: -3.7rem;
+    height: 1.5rem;
+}
+
+.navSearchButton{
+    background-color: white;
 }

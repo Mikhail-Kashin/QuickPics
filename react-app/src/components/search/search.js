@@ -18,7 +18,7 @@ function Search() {
 
 
   return (
-    <div>
+    <div className="searchPageContainer">
       {usersArr?.length ? usersArr.filter((val) => {
         if(userName === "") {
           return val
@@ -29,8 +29,8 @@ function Search() {
       }).map((user,i) => {
         return (
           <div className="profileLinkDiv" key={i}>
-            <Link className='userProfileLinks' to={`/${user.username}`}>
-              {user.username}
+            <Link className='fas fa-user-circle userProfileLinks' to={`/${user.username}`}>
+              &nbsp;&nbsp;{user.username}
             </Link>
           </div>
         )

@@ -55,7 +55,7 @@ function App() {
           <NavBar />
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/:name' exact={true}>
+        <ProtectedRoute path="/:name" exact={true}>
           <NavBar />
           <Profile />
         </ProtectedRoute>

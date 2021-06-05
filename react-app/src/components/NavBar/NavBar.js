@@ -9,7 +9,7 @@ import pic from '../../images/QuickPics.png'
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user)
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('none');
   const history = useHistory();
 
   const handleSubmit = async (e) => {
@@ -19,9 +19,9 @@ const NavBar = () => {
 
   return (
     <nav>
-      <form className="searchBar" onSubmit={handleSubmit}>
+      <form className="searchBarNav" onSubmit={handleSubmit}>
         <input type='input' placeholder='Search for a user'  onChange={event => {setSearchTerm(event.target.value)}}></input>
-        <button type='submit'>Submit</button>
+        <button type='submit' className='fas fa-search navSearchButton'></button>
       </form>
       <div>
         <NavLink to="/">
