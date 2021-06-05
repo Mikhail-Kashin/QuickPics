@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css'
 import pic from '../../images/QuickPics.png'
@@ -9,20 +9,26 @@ import pic from '../../images/QuickPics.png'
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user)
+  const [searchTerm, setSearchTerm] = useState('');
+  const history = useHistory();
+
+  const handleSubmit = async (e) => {
+    history.push(`/users/search/${searchTerm}`)
+  }
 
 
-  
   return (
     <nav>
+      <form className="searchBar" onSubmit={handleSubmit}>
+        <input type='input' placeholder='Search for a user'  onChange={event => {setSearchTerm(event.target.value)}}></input>
+        <button type='submit'>Submit</button>
+      </form>
       <div>
         <NavLink to="/">
           <img className="siteTitle" src={pic} ></img>
         </NavLink>
       </div>
       <ul className='nav'>
-        {/* <div>
-          <i className="fas fa-search"></i>
-        </div> */}
         <div>
           <NavLink to="/" className="fas fa-home icon" exact={true} activeClassName="active">
           </NavLink>

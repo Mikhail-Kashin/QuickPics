@@ -68,7 +68,7 @@ function Feed() {
                   <img className='feedImages' src={post.imageUrl}></img>
                   <div className='feedUserName'>
                     {likeCheck(post.likes, post.id, userId)}
-                    <h5 className='likeCounter'>Liked by {post.likes.length} user</h5>
+                    <h5 className='likeCounter'>Liked by {post.likes.length} users</h5>
                     <NavLink to={`/${post.user.username}`} className='feedUserName2'>{post.user.username}</NavLink>
                     <h1 className='feedCaption'>{post.caption}</h1>
                   </div>

@@ -167,7 +167,7 @@ function Profile() {
                   </div>
                     <div className='profileLikes'>
                     {likeCheck(post.likes, post.id, userId)}
-                    <h5>Liked by {post.likes.length} user</h5>
+                    <h5>Liked by {post.likes.length} users</h5>
                     </div>
                 </div>
               )
