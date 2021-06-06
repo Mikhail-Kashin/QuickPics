@@ -3,12 +3,14 @@ import thunk from 'redux-thunk';
 import session from './session'
 import profileReducer from './profile';
 import feedReducer from './feed'
+import searchReducer from './search'
 
 
 const rootReducer = combineReducers({
     session,
     profileReducer,
-    feedReducer
+    feedReducer,
+    searchReducer
 });
 
 let enhancer;

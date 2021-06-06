@@ -12,6 +12,7 @@ import { authenticate } from "./store/session";
 import UploadPicture from "./components/upload/upload-img";
 import Profile from "./components/Profile/Profile"
 import Feed from  './components/Feed/Feed';
+import Search from './components/search/search'
 
 
 function App() {
@@ -46,11 +47,15 @@ function App() {
           <NavBar />
           <UsersList />
         </ProtectedRoute>
+        <ProtectedRoute path="/users/search/:userName" exact={true} >
+          <NavBar />
+          <Search/>
+        </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true} >
           <NavBar />
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/:name' exact={true}>
+        <ProtectedRoute path="/:name" exact={true}>
           <NavBar />
           <Profile />
         </ProtectedRoute>
