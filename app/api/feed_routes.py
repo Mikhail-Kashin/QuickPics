@@ -19,11 +19,12 @@ def user_feed():
         User.username.in_(followerUsername)).all()
     # need to implement my posts into feed
 
-    return {"userDict": current_user.to_user_dict(),
-            "following": following,
-            "followers": followers,
-            'followingPosts': [post.to_dict() for post in followingPosts]
-            }
+    return {
+        "userDict": current_user.to_user_dict(),
+        "following": following,
+        "followers": followers,
+        'followingPosts': [post.to_dict() for post in followingPosts]
+    }
 
 
 @feed_routes.route('/comment/<postId>', methods=['POST'])
@@ -35,8 +36,17 @@ def comment_post(postId):
     db.session.add(postedComment)
     db.session.commit()
     return {
-
+        "comment": postedComment.to_dict()
     }
+
+
+@feed_routes.route('comment/<commentId>', methods=['DELETE'])
+@login_required
+def comment_delete(commentId):
+    comment = Comment.query.get(commentId)
+    db.session.delete(comment)
+    db.session.commit()
+    return {}
 
 
 @feed_routes.route('/like/<id>', methods=["POST"])

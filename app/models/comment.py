@@ -13,10 +13,10 @@ class Comment(db.Model):
     body = db.Column(db.Text, nullable=False)
     user = db.relationship('User', back_populates='comments')
     posts = db.relationship('Post', back_populates='comments')
-    # created_at = db.Column(db.DateTime(timezone=True),
-    #    nullable=False, server_default=func.now())
-    # updated_at = db.Column(db.DateTime(timezone=True),
-    #    nullable=False, server_default=func.now())
+    created_at = db.Column(db.DateTime(timezone=True),
+                           nullable=False, server_default=func.now())
+    updated_at = db.Column(db.DateTime(timezone=True),
+                           nullable=False, server_default=func.now())
 
     def to_dict(self):
         return {
