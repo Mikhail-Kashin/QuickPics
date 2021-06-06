@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, Post, User, Like
+from app.models import db, Post, User, Like, Comment
 from flask_login import current_user, login_required
 
 
@@ -17,14 +17,26 @@ def user_feed():
 
     followingPosts = Post.query.join(User).filter(
         User.username.in_(followerUsername)).all()
-
-    myPosts = User.query.get()
+    # need to implement my posts into feed
 
     return {"userDict": current_user.to_user_dict(),
             "following": following,
             "followers": followers,
             'followingPosts': [post.to_dict() for post in followingPosts]
             }
+
+
+@feed_routes.route('/comment/<postId>', methods=['POST'])
+@login_required
+def comment_post(postId):
+    userId = request.form["userId"]
+    comment = request.form["comment"]
+    postedComment = Comment(userId=userId, postId=postId, body=comment)
+    db.session.add(postedComment)
+    db.session.commit()
+    return {
+
+    }
 
 
 @feed_routes.route('/like/<id>', methods=["POST"])
