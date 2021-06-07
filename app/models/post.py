@@ -10,9 +10,11 @@ class Post(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     postsUsername = db.relationship('User', back_populates='posts')
     caption = db.Column(db.Text)
-    comments = db.Column(db.Text)
-    likes = db.relationship('Like', back_populates='posts', cascade="all, delete", passive_deletes=True)
-    # comment = db.relationship('Comment', back_populates='posts')
+    # comments = db.Column(db.Text)
+    likes = db.relationship(
+        'Like', back_populates='posts', cascade="all, delete", passive_deletes=True)
+    comments = db.relationship(
+        'Comment', back_populates='posts', cascade="all, delete", passive_deletes=True)
     imageUrl = db.Column(db.String, nullable=False)
     user = db.relationship('User', back_populates='posts')
     createdAt = db.Column(db.DateTime(timezone=True),
@@ -23,7 +25,7 @@ class Post(db.Model):
             "id": self.id,
             "user": self.user.to_dict(),
             "caption": self.caption,
-            "comments": self.comments,
+            "comments": [comment.to_dict() for comment in self.comments],
             "imageUrl": self.imageUrl,
             "createdAt": self.createdAt,
             "likes": [like.to_dict() for like in self.likes]
@@ -33,7 +35,7 @@ class Post(db.Model):
         return {
             "id": self.id,
             "caption": self.caption,
-            "comments": self.comments,
+            "comments": [comment.to_dict() for comment in self.comments],
             "imageUrl": self.imageUrl,
             "createdAt": self.createdAt,
             "likes": [like.to_dict() for like in self.likes]

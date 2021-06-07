@@ -8,8 +8,10 @@ import './Feed.css'
 function Feed() {
   const dispatch = useDispatch();
   const feed = useSelector(state => state.feedReducer);
-  const userId = useSelector(state => state.session.user.id)
-  const eachPost = feed.followingPosts
+  const userId = useSelector(state => state.session.user.id);
+  const userPost = feed.userDict.posts;
+  //need to implement user posts in feed
+  const eachPost = feed.followingPosts;
 
 
   useEffect(() => {
@@ -24,9 +26,9 @@ function Feed() {
   }
 
   const yourLike = (like) => {
-    if(like?.length > 0) {
-      for(let i = 0; i < like.length; i++) {
-        if(like[i].userId === userId) {
+    if (like?.length > 0) {
+      for (let i = 0; i < like.length; i++) {
+        if (like[i].userId === userId) {
           return like[i].id
         }
       }
@@ -34,9 +36,9 @@ function Feed() {
   }
 
   const likeCheck = (likeArr, postId, userId) => {
-    if(likeArr?.length > 0) {
-      for(let i = 0; i < likeArr.length; i++) {
-        if(likeArr[i].userId === userId) {
+    if (likeArr?.length > 0) {
+      for (let i = 0; i < likeArr.length; i++) {
+        if (likeArr[i].userId === userId) {
           return (
             <div className="fas fa-heart unlike" onClick={() => unLike(likeArr)}></div>
           )
@@ -44,7 +46,7 @@ function Feed() {
       }
     }
     return (
-      <div className="far fa-heart like" onClick={() => like(userId,postId)}></div>
+      <div className="far fa-heart like" onClick={() => like(userId, postId)}></div>
     )
   }
 
@@ -58,7 +60,7 @@ function Feed() {
     <div>
       <div className="feed-container">
         <div className="post">
-          {eachPost.slice(0).reverse().map((post,i) => {
+          {eachPost.slice(0).reverse().map((post, i) => {
             return (
               <div className='feedContainer' key={i}>
                 <div>

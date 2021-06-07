@@ -14,13 +14,24 @@ export const feedInfo = () => async (dispatch) => {
   }
 }
 
+export const createComment = (userId, postId, comment) => async (dispatch) => {
+  const res = await fetch(`api/feed/comment/${postId}`, {
+    method: "POST",
+    userId,
+    postId,
+    comment
+  })
+  const data = await res.json();
+  return "commented"
+}
+
 export const likePost = (userId, postId) => async (dispatch) => {
   const res = await fetch(`/api/feed/like/${postId}`, {
     method: "POST",
     userId,
     postId
   })
-  const data = await res.json()
+  const data = await res.json();
   return "liked"
 }
 
