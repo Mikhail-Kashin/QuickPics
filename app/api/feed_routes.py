@@ -27,6 +27,13 @@ def user_feed():
     }
 
 
+@feed_routes.route('/post/<postId>')
+@login_required
+def get_post(postId):
+    post = Post.query.get(postId)
+    return {"currentPost": post.to_dict()}
+
+
 @feed_routes.route('/comment/<postId>', methods=['POST'])
 @login_required
 def comment_post(postId):
