@@ -4,6 +4,8 @@ import session from './session'
 import profileReducer from './profile';
 import feedReducer from './feed'
 import modal from './modal';
+import searchReducer from './search'
+
 
 
 const rootReducer = combineReducers({
@@ -11,6 +13,7 @@ const rootReducer = combineReducers({
     profileReducer,
     feedReducer,
     modal
+    searchReducer
 });
 
 let enhancer;

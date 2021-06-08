@@ -14,11 +14,9 @@ const followData = (data) => ({
 export const followersData = (name) => async(dispatch) => {
     const res = await fetch(`/api/profiles/${name}`)
     const followInfo = await res.json();
-    // console.log('..............>', followInfo)
     if (res.ok) {
         await dispatch(followData(followInfo));
     } else {
-        console.log('ressssssss', res)
         throw res
     }
 }
@@ -26,11 +24,9 @@ export const followersData = (name) => async(dispatch) => {
 export const profileInfo = (name) => async (dispatch) => {
     const res = await fetch(`/api/profiles/${name}`);
     const user = await res.json();
-    console.log('..............>user', user)
     if (res.ok) {
         await dispatch(getInfo(user));
     } else {
-        console.log('ressssssss', res)
         throw res
     }
 

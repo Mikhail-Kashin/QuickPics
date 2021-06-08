@@ -1,9 +1,12 @@
 .profileContainer{
     position: absolute;
-    top: 10%;
+    top: 15%;
     left: 50%;
     margin-right: -50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .profile-user-settings {
@@ -95,4 +98,5 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin-bottom: 2rem;
 }

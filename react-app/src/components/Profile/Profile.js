@@ -13,6 +13,15 @@ function Profile() {
   const followersObj = profile.followers
   const followingObj = profile.following
   const userId = useSelector(state => state.session.user.id)
+  const [followClicked, setFollowClicked] = useState(false)
+
+
+  // const followBtn =document.getElementsByClassName('.profile-stat-followers')
+  // if (followBtn){
+  //   followBtn.addEventListener('click', () =>{
+  //     setFollowClicked(true)
+  //   })
+  // }
 
   function countFollowers() {
     const myFollowers = profile.followers;
@@ -53,8 +62,11 @@ function Profile() {
     })
     const data = await res.json()
     //  console.log("---------->data", data)
+    dispatch(profileInfo(name, followersObj, followingObj))
     return (data)
   }
+
+
 
   const UnFollowButton = async (e) => {
     e.preventDefault();
@@ -63,7 +75,8 @@ function Profile() {
     })
     const data = await res.json()
     //  console.log("---------->data", data)
-    return (data)
+    dispatch(profileInfo(name, followersObj, followingObj))
+    return   (data)
   }
 
   function ifUserIsMe() {
@@ -79,12 +92,9 @@ function Profile() {
     }
   }
 
-
   useEffect(() => {
-    (async () => {
-      await dispatch(profileInfo(name, followersObj, followingObj))
-    })();
-  }, [name, followersObj, followingObj, dispatch]);
+    dispatch(profileInfo(name, followersObj, followingObj))
+  }, [name, dispatch]);
 
   const yourLike = (like) => {
     if(like?.length > 0) {
@@ -124,21 +134,21 @@ function Profile() {
 
 
   return (
-    <div>
+    <div className='entireProfileContainer'>
       <div className='profileContainer'>
         <h1 className="profile-user-name">
           {profile.userDict['username']}
           {/* <button className="btn profile-edit-btn">Edit Profile</button> */}
         </h1>
-        {/* if I follow: show following in span   */}
-        {/* useParams to check against username and see if we follow them  */}
-        {ifUserIsMe()}
-        {/* <button className="btn profile-settings-btn" aria-label="profile settings"><i className="fas fa-cog" aria-hidden="true"></i></button> */}
         <div className="profile-stats">
           <div className="profile-stat-post"> {profile.userDict.posts.length} posts</div>
           <div className="profile-stat-followers">{countFollowers()} followers</div>
           <div className="profile-stat-following">{countFollowing()} following</div>
         </div>
+        {/* if I follow: show following in span   */}
+        {/* useParams to check against username and see if we follow them  */}
+        {ifUserIsMe()}
+        {/* <button className="btn profile-settings-btn" aria-label="profile settings"><i className="fas fa-cog" aria-hidden="true"></i></button> */}
         <div className="profile-bio">
           {/* <p><span className="profile-real-name">{profile.userDict['username']}</span>{profile.userDict['bio']}</p> */}
         </div>
@@ -155,7 +165,7 @@ function Profile() {
                   </div>
                     <div className='profileLikes'>
                     {likeCheck(post.likes, post.id, userId)}
-                    <h5>Liked by {post.likes.length} user</h5>
+                    <h5>Liked by {post.likes.length} users</h5>
                     </div>
                 </div>
               )
