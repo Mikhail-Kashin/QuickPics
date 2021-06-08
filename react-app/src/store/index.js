@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     session,
     profileReducer,
     feedReducer,
-    modal
+    modal,
     searchReducer
 });
 
