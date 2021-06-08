@@ -11,7 +11,8 @@ import User from "./components/User/User";
 import { authenticate } from "./store/session";
 import UploadPicture from "./components/upload/upload-img";
 import Profile from "./components/Profile/Profile"
-import Feed from  './components/Feed/Feed';
+import Feed from './components/Feed/Feed';
+import PostModal from './components/Feed/PostModal';
 import Search from './components/search/search'
 
 
@@ -62,6 +63,9 @@ function App() {
         <ProtectedRoute path='/' exact={true}>
           <NavBar />
           <Feed />
+        </ProtectedRoute>
+        <ProtectedRoute path='/post/:postId' exact={true}>
+          <PostModal />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

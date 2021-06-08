@@ -1,9 +1,21 @@
 const USER_FEED = 'USER_FEED';
+const GET_ONE_POST = 'GET_ONE_POST';
 
 const getFeed = (feed) => ({
   type: USER_FEED,
   payload: feed
 })
+
+const getPost = (postId) => ({
+  type: GET_ONE_POST,
+  payload: postId
+})
+
+export const getOnePost = (postId) => async (dispatch) => {
+  const res = await fetch(`/api/feed/post/${postId}`);
+  const data = await res.json();
+  if (res.ok) await dispatch(getFeed(data))
+}
 
 export const feedInfo = () => async (dispatch) => {
   const res = await fetch('/api/feed');
@@ -45,7 +57,6 @@ export const unLikePost = (likeId) => async dispatch => {
 }
 
 
-
 const initialState = {
   followers: {},
   following: {},
@@ -55,7 +66,8 @@ const initialState = {
     email: '',
     posts: [],
     username: ''
-  }
+  },
+  selectedPost: {}
 };
 
 export default function feedReducer(state = initialState, action) {
@@ -63,6 +75,9 @@ export default function feedReducer(state = initialState, action) {
     case USER_FEED:
       const newState = { ...action.payload }
       return newState
+    // case GET_ONE_POST:
+    //   const newState = { ...action.payload }
+    //   return newState
     default:
       return state;
   }
