@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom'
 import { feedInfo, likePost, unLikePost, getOnePost } from '../../store/feed';
 import './Feed.css'
-import PostModal from '../Feed/PostModal';
+import PostModal from './PostModal';
 import { Modal } from '../../context/modal';
 import { showPost, hidePost } from '../../store/modal'
 
@@ -60,6 +60,17 @@ function Feed() {
     dispatch(feedInfo())
   }
 
+  function handleClose(postId) {
+    dispatch(hidePost(postId));
+    dispatch(getOnePost(postId))
+    console.log('-----------yayaya-----')
+  }
+
+  function handleOpen(postId) {
+    dispatch(showPost(postId));
+    dispatch(getOnePost(postId))
+    console.log('------boobobobo-----')
+  }
 
   return (
     <div>
@@ -67,12 +78,13 @@ function Feed() {
         <div className="post" >
           {eachPost?.slice(0)?.reverse().map((post, i) => {
             return (
-              <div className='feedContainer' onClick={() => dispatch(showPost(post.id))} key={i}>
-                { modalState === post.id &&
-                  <Modal onClose={() => dispatch(hidePost(post.id))}>
-                    <PostModal postId={post.id}>
-
-                    </PostModal>
+              <div className='postContainer' key={i}>
+                <button onClick={() => handleOpen(post.id)}>Open Modal</button>
+                {modalState === post.id &&
+                  <Modal onClose={() => handleClose(post.id)}>
+                    <h1>test</h1>
+                    <PostModal postId={post.id} />
+                    {/* </PostModal> */}
                     <button onClick={() => dispatch(hidePost(post.id))}>close</button>
                   </Modal>
                 }
