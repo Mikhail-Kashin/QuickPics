@@ -4,7 +4,7 @@
   object-fit: cover;
 }
 
-.feedContainer{
+.postContainer{
   display:flex;
   justify-content: center;
   align-items: center;

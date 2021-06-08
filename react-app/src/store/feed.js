@@ -14,7 +14,7 @@ const getPost = (postId) => ({
 export const getOnePost = (postId) => async (dispatch) => {
   const res = await fetch(`/api/feed/post/${postId}`);
   const data = await res.json();
-  if (res.ok) await dispatch(getFeed(data))
+  if (res.ok) await dispatch(getPost(data.currentPost))
 }
 
 export const feedInfo = () => async (dispatch) => {
@@ -67,17 +67,18 @@ const initialState = {
     posts: [],
     username: ''
   },
-  selectedPost: {}
+  selectedPost: null
 };
 
 export default function feedReducer(state = initialState, action) {
+  let newState
   switch (action.type) {
     case USER_FEED:
-      const newState = { ...action.payload }
+      newState = { ...state, ...action.payload }
       return newState
-    // case GET_ONE_POST:
-    //   const newState = { ...action.payload }
-    //   return newState
+    case GET_ONE_POST:
+      newState = { ...state, selectedPost: action.payload }
+      return newState
     default:
       return state;
   }

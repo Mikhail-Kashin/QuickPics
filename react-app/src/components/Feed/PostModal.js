@@ -8,19 +8,22 @@ function PostModal({ postId }) {
   console.log(postId, '-----');
   const dispatch = useDispatch();
   // let id = useParams();
-  const post = useSelector(state => state.feedReducer?.currentPost);
+  const post = useSelector(state => state.feedReducer?.selectedPost);
   console.log(post);
 
-  useEffect(() => {
-    (async () => {
-      await dispatch(getOnePost(postId));
-    })()
-  }, [dispatch])
+  // useEffect(() => {
+  //   (async () => {
+  //     await dispatch(getOnePost(postId));
+  //   })()
+  // }, [dispatch])
+
+  if (!post) return null;
 
   return (
     <>
+      <h1>TEST</h1>
       <div>{post?.user.username}</div>
-      <img src={post?.imageUrl}></img>
+      {/* <img src={post?.imageUrl}></img> */}
       <div>{post?.caption}</div>
       {post?.comments.map((comment) => (
         <div key={comment.id}>{comment.body}</div>
