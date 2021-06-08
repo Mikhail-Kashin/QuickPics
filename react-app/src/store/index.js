@@ -3,12 +3,14 @@ import thunk from 'redux-thunk';
 import session from './session'
 import profileReducer from './profile';
 import feedReducer from './feed'
+import modal from './modal';
 
 
 const rootReducer = combineReducers({
     session,
     profileReducer,
-    feedReducer
+    feedReducer,
+    modal
 });
 
 let enhancer;
