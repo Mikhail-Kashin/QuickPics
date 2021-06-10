@@ -1,13 +1,54 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { getOnePost } from '../../store/feed';
+import { getOnePost, likePost, unLikePost, feedInfo } from '../../store/feed';
+
 import './Feed.css'
 
 function PostModal({ postId }) {
   const dispatch = useDispatch();
   const post = useSelector(state => state.feedReducer?.selectedPost?.currentPost);
-  console.log(post);
+  const userId = useSelector(state => state?.session?.user?.id);
+  const likesArr = useSelector(state => state?.feedReducer?.selectedPost?.currentPost?.likes);
+
+  async function like(userId, postId) {
+    await dispatch(likePost(userId, postId))
+    dispatch(getOnePost(postId))
+    dispatch(feedInfo())
+  }
+
+  const yourLike = (like) => {
+    if (like?.length > 0) {
+      for (let i = 0; i < like.length; i++) {
+        if (like[i].userId === userId) {
+          return like[i].id
+        }
+      }
+    }
+  }
+
+  const likeCheck = (likeArr, postId, userId) => {
+    if (likeArr?.length > 0) {
+      for (let i = 0; i < likeArr.length; i++) {
+        if (likeArr[i].userId === userId) {
+          return (
+            <div className="fas fa-heart unlike" onClick={() => unLike(likeArr)}></div>
+          )
+        }
+      }
+    }
+    return (
+      <div className="far fa-heart like" onClick={() => like(userId, postId)}></div>
+    )
+  }
+
+  async function unLike(like) {
+    const likeId = yourLike(like);
+    await dispatch(unLikePost(likeId))
+    dispatch(getOnePost( postId ))
+    dispatch(feedInfo())
+  }
+
 
   if (!post) return null;
 
@@ -25,6 +66,11 @@ function PostModal({ postId }) {
               <div key={comment.id} className='modalComments'>{comment.body}</div>
             </div>
         ))}
+        </div>
+        <div className='line'></div>
+        <div className='modalLikes'>
+          {likeCheck(likesArr, postId, userId)}
+          &nbsp;&nbsp;&nbsp;&nbsp;liked by {likesArr.length} users
         </div>
         <div className='modalCommentBar'>
           <input placeholder='add a comment...' className='modalCommentInput'></input>
