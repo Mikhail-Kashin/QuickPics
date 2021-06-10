@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom'
 import { feedInfo, likePost, unLikePost, getOnePost } from '../../store/feed';
@@ -11,11 +10,11 @@ import { showPost, hidePost } from '../../store/modal'
 
 function Feed() {
   const dispatch = useDispatch();
-  const feed = useSelector(state => state.feedReducer);
-  const userId = useSelector(state => state.session.user.id);
-  const modalState = useSelector(state => state.modal.postForm);
+  const feed = useSelector(state => state?.feedReducer);
+  const userId = useSelector(state => state?.session?.user?.id);
+  const modalState = useSelector(state => state?.modal?.postForm);
   //need to implement user posts in feed
-  const eachPost = feed.followingPosts;
+  const eachPost = feed?.followingPosts;
 
 
   useEffect(() => {
@@ -63,13 +62,11 @@ function Feed() {
   function handleClose(postId) {
     dispatch(hidePost(postId));
     dispatch(getOnePost(postId))
-    console.log('-----------yayaya-----')
   }
 
   function handleOpen(postId) {
     dispatch(showPost(postId));
     dispatch(getOnePost(postId))
-    console.log('------boobobobo-----')
   }
 
   return (
@@ -79,20 +76,16 @@ function Feed() {
           {eachPost?.slice(0)?.reverse().map((post, i) => {
             return (
               <div className='postContainer' key={i}>
-                <button onClick={() => handleOpen(post.id)}>Open Modal</button>
-                {modalState === post.id &&
-                  <Modal onClose={() => handleClose(post.id)}>
-                    <h1>test</h1>
-                    <PostModal postId={post.id} />
-                    {/* </PostModal> */}
-                    <button onClick={() => dispatch(hidePost(post.id))}>close</button>
+                {modalState === post?.id &&
+                  <Modal onClose={() => handleClose(post?.id)}>
+                    <PostModal postId={post?.id} />
                   </Modal>
                 }
                 <div>
-                  <NavLink to={`/${post.user.username}`}>
+                  <NavLink to={`/${post?.user?.username}`}>
                     <h1 className='far fa-user-circle feedUserName'>{post.user.username}</h1>
                   </NavLink>
-                  <img className='feedImages' src={post.imageUrl}></img>
+                  <img className='feedImages' src={post.imageUrl} onClick={ () => handleOpen(post.id)}></img>
                   <div className='feedUserName'>
                     {likeCheck(post.likes, post.id, userId)}
                     <h5 className='likeCounter'>Liked by {post.likes.length} users</h5>
