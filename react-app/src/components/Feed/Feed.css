@@ -3,6 +3,11 @@
   height: 40rem;
   object-fit: cover;
 }
+.postModalImages{
+  width:  40rem;
+  height: 40rem;
+  object-fit: cover;
+}
 
 .postContainer{
   display:flex;
@@ -45,4 +50,65 @@
 .likeCounter{
   margin-top:.7rem;
   margin-bottom: .7rem;
+}
+
+.modalUserName{
+  background-color: white;
+  width:20rem;
+  border-left: 0.5px solid lightgray
+}
+
+.modalContainer{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.modalUserNameText{
+  margin-left: 2rem;
+  margin-top: 1rem;
+  color: black;
+  font-weight: bold;
+}
+
+.modalCaption{
+  margin-left: 2rem;
+  margin-top: 0.5rem;
+}
+.line{
+  border-bottom: 0.5px solid lightgray;
+}
+.modalComments{
+  margin-left: 2rem;
+  margin-top:1rem;
+  margin-bottom: 2rem;
+}
+
+.modalCommentUser{
+  color: black;
+  margin-left: 2rem;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+.modalCommentsContainer{
+  height: 30rem;
+  overflow-y: scroll;
+}
+
+.modalCommentInput{
+  width: 20rem;
+  height:3rem;
+  border-top: 0.5px solid lightgray;
+  border-left:none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.modalCommentInput::placeholder{
+  text-align: center;
+}
+
+.modalCommentBar{
+ position: absolute;
+ bottom: 0px;
 }
