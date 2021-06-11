@@ -14,6 +14,7 @@ import Profile from "./components/Profile/Profile"
 import Feed from './components/Feed/Feed';
 import PostModal from './components/Feed/PostModal';
 import Search from './components/search/search'
+import ProfilePostModal from './components/Profile/ProfilePostModal'
 
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/post/:postId' exact={true}>
           <PostModal />
+          <ProfilePostModal />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

@@ -6,6 +6,7 @@
 .postModalImages{
   width:  40rem;
   height: 40rem;
+  border: burlywood;
   object-fit: cover;
 }
 
