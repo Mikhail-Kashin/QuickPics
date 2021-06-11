@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { getOnePost, likePost, unLikePost, feedInfo } from '../../store/feed';
+import { getOnePost, likePost, unLikePost, feedInfo, createComment } from '../../store/feed';
 
 import './Feed.css'
 
@@ -10,6 +10,7 @@ function PostModal({ postId }) {
   const post = useSelector(state => state.feedReducer?.selectedPost?.currentPost);
   const userId = useSelector(state => state?.session?.user?.id);
   const likesArr = useSelector(state => state?.feedReducer?.selectedPost?.currentPost?.likes);
+  const [body, setBody] = useState('');
 
   async function like(userId, postId) {
     await dispatch(likePost(userId, postId))
@@ -45,8 +46,13 @@ function PostModal({ postId }) {
   async function unLike(like) {
     const likeId = yourLike(like);
     await dispatch(unLikePost(likeId))
-    dispatch(getOnePost( postId ))
+    dispatch(getOnePost(postId))
     dispatch(feedInfo())
+  }
+
+  function postComment(body) {
+    dispatch(createComment(body))
+    dispatch(getOnePost(postId))
   }
 
 
@@ -54,27 +60,35 @@ function PostModal({ postId }) {
 
   return (
     <div className='modalContainer'>
-      <img className='postModalImages'src={post?.imageUrl}></img>
+      <img className='postModalImages' src={post?.imageUrl}></img>
       <div className='modalUserName'>
         <Link to={`/${post?.user?.username}`} className='far fa-user-circle  modalUserNameText'>&nbsp;&nbsp;&nbsp;&nbsp;{post?.user.username}</Link>
         <div className='modalCaption'>{post?.caption}</div>
         <div className='line'></div>
         <div className='modalCommentsContainer'>
           {post?.comments.map((comment) => (
-            <div>
+            <div key={comment.id}>
               <Link className='far fa-user-circle modalCommentUser' to={`/${comment.userId.username}`}>&nbsp;&nbsp;&nbsp;&nbsp;{comment.userId.username}</Link>
               <div key={comment.id} className='modalComments'>{comment.body}</div>
             </div>
-        ))}
+          ))}
         </div>
         <div className='line'></div>
         <div className='modalLikes'>
           {likeCheck(likesArr, postId, userId)}
           &nbsp;&nbsp;&nbsp;&nbsp;liked by {likesArr.length} users
         </div>
+        {/* <form onSubmit={postComment(body)}> */}
         <div className='modalCommentBar'>
-          <input placeholder='add a comment...' className='modalCommentInput'></input>
+          <input
+            onChange={(e) => setBody(e.target.value)}
+            value={body}
+            placeholder='add a comment...'
+            className='modalCommentInput'
+          ></input>
+          {/* <button type="submit">Comment</button> */}
         </div>
+        {/* </form> */}
       </div>
 
     </div>
