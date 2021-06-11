@@ -50,8 +50,8 @@ function PostModal({ postId }) {
     dispatch(feedInfo())
   }
 
-  function postComment(body) {
-    dispatch(createComment(body))
+  function postComment(comment) {
+    dispatch(createComment(postId, comment))
     dispatch(getOnePost(postId))
   }
 
@@ -78,17 +78,17 @@ function PostModal({ postId }) {
           {likeCheck(likesArr, postId, userId)}
           &nbsp;&nbsp;&nbsp;&nbsp;liked by {likesArr.length} users
         </div>
-        {/* <form onSubmit={postComment(body)}> */}
-        <div className='modalCommentBar'>
-          <input
-            onChange={(e) => setBody(e.target.value)}
-            value={body}
-            placeholder='add a comment...'
-            className='modalCommentInput'
-          ></input>
-          {/* <button type="submit">Comment</button> */}
-        </div>
-        {/* </form> */}
+        <form onSubmit={postComment(body)}>
+          <div className='modalCommentBar'>
+            <input
+              onChange={(e) => setBody(e.target.value)}
+              value={body}
+              // placeholder='add a comment...'
+              className='modalCommentInput'
+            ></input>
+          </div>
+        </form>
+        <button type="submit">Comment</button>
       </div>
 
     </div>

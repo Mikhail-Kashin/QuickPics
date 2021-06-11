@@ -37,9 +37,9 @@ def get_post(postId):
 @feed_routes.route('/comment/<postId>', methods=['POST'])
 @login_required
 def comment_post(postId):
-    userId = request.form["userId"]
     comment = request.form["comment"]
-    postedComment = Comment(userId=userId, postId=postId, body=comment)
+    postedComment = Comment(userId=current_user.id,
+                            postId=postId, body=comment)
     db.session.add(postedComment)
     db.session.commit()
     return {
