@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { profileInfo, followersData } from '../../store/profile';
 import { likePost, unLikePost } from '../../store/feed';
+import { Modal } from '../../context/modal';
+import ProfilePostModal from './ProfilePostModal';
+import { showPost, hidePost } from '../../store/modal'
 import './profile.css';
 
 function Profile() {
@@ -13,15 +16,10 @@ function Profile() {
   const followersObj = profile.followers
   const followingObj = profile.following
   const userId = useSelector(state => state.session.user.id)
+  const modalState = useSelector(state => state?.modal?.postForm);
   const [followClicked, setFollowClicked] = useState(false)
 
 
-  // const followBtn =document.getElementsByClassName('.profile-stat-followers')
-  // if (followBtn){
-  //   followBtn.addEventListener('click', () =>{
-  //     setFollowClicked(true)
-  //   })
-  // }
 
   function countFollowers() {
     const myFollowers = profile.followers;
@@ -44,9 +42,7 @@ function Profile() {
     return count;
   }
   function isFollowing() {
-    // console.log('-------->name', [name])
     let followersArr = Object.keys(followersObj)
-    // console.log('-------->followersarr', followersArr)
     if (followersArr.includes(username)) {
       console.log('this is true!!!!!!')
       return true
@@ -54,14 +50,12 @@ function Profile() {
       console.log('this is false!!!!')
     }
   }
-  // console.log(isFollowing())
   const FollowButton = async (e) => {
     e.preventDefault();
     const res = await fetch(`/api/profiles/follows/${name}`, {
       method: "POST"
     })
     const data = await res.json()
-    //  console.log("---------->data", data)
     dispatch(profileInfo(name, followersObj, followingObj))
     return (data)
   }
@@ -74,7 +68,6 @@ function Profile() {
       method: "POST"
     })
     const data = await res.json()
-    //  console.log("---------->data", data)
     dispatch(profileInfo(name, followersObj, followingObj))
     return   (data)
   }
@@ -105,6 +98,18 @@ function Profile() {
       }
     }
   }
+
+  function handleOpen(postId) {
+    dispatch(showPost(postId));
+    dispatch(profileInfo(name, followersObj, followingObj))
+  }
+
+  function handleClose(postId) {
+    dispatch(hidePost(postId));
+    dispatch(profileInfo(name, followersObj, followingObj))
+  }
+
+
 
   const likeCheck = (likeArr, postId, userId) => {
     if(likeArr?.length > 0) {
@@ -138,19 +143,14 @@ function Profile() {
       <div className='profileContainer'>
         <h1 className="profile-user-name">
           {profile.userDict['username']}
-          {/* <button className="btn profile-edit-btn">Edit Profile</button> */}
         </h1>
         <div className="profile-stats">
           <div className="profile-stat-post"> {profile.userDict.posts.length} posts</div>
           <div className="profile-stat-followers">{countFollowers()} followers</div>
           <div className="profile-stat-following">{countFollowing()} following</div>
         </div>
-        {/* if I follow: show following in span   */}
-        {/* useParams to check against username and see if we follow them  */}
         {ifUserIsMe()}
-        {/* <button className="btn profile-settings-btn" aria-label="profile settings"><i className="fas fa-cog" aria-hidden="true"></i></button> */}
         <div className="profile-bio">
-          {/* <p><span className="profile-real-name">{profile.userDict['username']}</span>{profile.userDict['bio']}</p> */}
         </div>
       </div>
       <main className='images-container'>
@@ -159,8 +159,13 @@ function Profile() {
             {profile.userDict.posts.slice(0).reverse().map((post, i) => {
               return (
                 <div key={post.id}>
+                  {modalState === post?.id &&
+                  <Modal onClose={() => handleClose(post?.id)}>
+                    <ProfilePostModal postId={post.id} />
+                  </Modal>
+                }
                   <div>
-                    <img className='gallery-image' src={post.imageUrl}
+                    <img className='gallery-image' src={post.imageUrl} onClick={ () => handleOpen(post.id)}
                     ></img>
                   </div>
                     <div className='profileLikes'>

@@ -96,7 +96,6 @@ function Feed() {
               </div>
             )
           })}
-          {/* <h1 className="postedUser">{feed.followingPosts.user.username}</h1> */}
         </div>
       </div>
     </div>
