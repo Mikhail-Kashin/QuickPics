@@ -65,7 +65,7 @@ function ProfilePostModal({ postId }) {
     <div className='modalContainer'>
       <img className='postModalImages'src={correctPost(postId)?.imageUrl}></img>
       <div className='modalUserName'>
-        <Link to={`/${profile.username}`} className='far fa-user-circle  modalUserNameText'>&nbsp;&nbsp;&nbsp;&nbsp;{profile.username}</Link>
+        <Link to={`/${profile.userDict.username}`} className='far fa-user-circle  modalUserNameText'>&nbsp;&nbsp;&nbsp;&nbsp;{profile.userDict.username}</Link>
         <div className='modalCaption'>{correctPost(postId)?.caption}</div>
         <div className='line'></div>
         <div className='modalCommentsContainer'>
