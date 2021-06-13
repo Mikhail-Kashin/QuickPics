@@ -14,7 +14,7 @@ const getPost = (postId) => ({
 export const getOnePost = (postId) => async (dispatch) => {
   const res = await fetch(`/api/feed/post/${postId}`);
   const data = await res.json();
-  if (res.ok) {await dispatch(getPost(data))}
+  if (res.ok) { await dispatch(getPost(data)) }
 }
 
 export const feedInfo = () => async (dispatch) => {
@@ -26,12 +26,13 @@ export const feedInfo = () => async (dispatch) => {
   }
 }
 
-export const createComment = (userId, postId, comment) => async (dispatch) => {
+export const createComment = (postId, comment) => async (dispatch) => {
+  let formData = new FormData();
+  formData.append('postId', postId);
+  formData.append('comment', comment);
   const res = await fetch(`api/feed/comment/${postId}`, {
     method: "POST",
-    userId,
-    postId,
-    comment
+    body: formData
   })
   const data = await res.json();
   return "commented"
