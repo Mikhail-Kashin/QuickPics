@@ -86,7 +86,7 @@ function PostModal({ postId }) {
             <input
               onChange={(e) => setComment(e.target.value)}
               value={comment}
-              // placeholder='add a comment...'
+              placeholder='add a comment...'
               className='modalCommentInput'
             ></input>
             <button className='submitBtn' type="submit">Comment</button>
