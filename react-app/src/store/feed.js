@@ -27,10 +27,12 @@ export const feedInfo = () => async (dispatch) => {
 }
 
 export const createComment = (postId, comment) => async (dispatch) => {
+  let formData = new FormData();
+  formData.append('postId', postId);
+  formData.append('comment', comment);
   const res = await fetch(`api/feed/comment/${postId}`, {
     method: "POST",
-    postId,
-    comment
+    body: formData
   })
   const data = await res.json();
   return "commented"

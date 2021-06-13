@@ -10,7 +10,7 @@ function PostModal({ postId }) {
   const post = useSelector(state => state.feedReducer?.selectedPost?.currentPost);
   const userId = useSelector(state => state?.session?.user?.id);
   const likesArr = useSelector(state => state?.feedReducer?.selectedPost?.currentPost?.likes);
-  const [body, setBody] = useState('');
+  const [comment, setComment] = useState('');
 
   async function like(userId, postId) {
     await dispatch(likePost(userId, postId))
@@ -50,9 +50,12 @@ function PostModal({ postId }) {
     dispatch(feedInfo())
   }
 
-  function postComment(comment) {
-    dispatch(createComment(postId, comment))
+  const postComment = async (e) => {
+    e.preventDefault();
+    await dispatch(createComment(postId, comment))
     dispatch(getOnePost(postId))
+    setComment('');
+    dispatch(feedInfo())
   }
 
 
@@ -78,17 +81,17 @@ function PostModal({ postId }) {
           {likeCheck(likesArr, postId, userId)}
           &nbsp;&nbsp;&nbsp;&nbsp;liked by {likesArr.length} users
         </div>
-        <form onSubmit={postComment(body)}>
+        <form onSubmit={postComment}>
           <div className='modalCommentBar'>
             <input
-              onChange={(e) => setBody(e.target.value)}
-              value={body}
+              onChange={(e) => setComment(e.target.value)}
+              value={comment}
               // placeholder='add a comment...'
               className='modalCommentInput'
             ></input>
+            <button className='submitBtn' type="submit">Comment</button>
           </div>
         </form>
-        <button type="submit">Comment</button>
       </div>
 
     </div>
