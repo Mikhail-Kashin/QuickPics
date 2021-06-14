@@ -15,7 +15,7 @@ import Feed from './components/Feed/Feed';
 import PostModal from './components/Feed/PostModal';
 import Search from './components/search/search'
 import ProfilePostModal from './components/Profile/ProfilePostModal'
-
+import About from './components/About/About'
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -48,6 +48,10 @@ function App() {
         <ProtectedRoute path="/users" exact={true} >
           <NavBar />
           <UsersList />
+        </ProtectedRoute>
+        <ProtectedRoute path="/about" exact={true} >
+          <About />
+          <NavBar />
         </ProtectedRoute>
         <ProtectedRoute path="/users/search/:userName" exact={true} >
           <NavBar />
