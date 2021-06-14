@@ -83,9 +83,9 @@ function PostModal({ postId }) {
               <div key={comment.id}>
                 <Link className='far fa-user-circle modalCommentUser' to={`/${comment.userId.username}`}>&nbsp;&nbsp;&nbsp;&nbsp;{comment.userId.username}</Link>
                 <div key={comment.id} className='modalComments'>{comment.body}
-                  <button onClick={() => deleteComment(comment.id)}>X</button>
                   {/* <button onClick={() => editComment(comment.id)}>edit</button> */}
                 </div>
+                  <button className='fas fa-trash feedDelete' onClick={() => deleteComment(comment.id)}></button>
               </div>
             </>
           ))}
