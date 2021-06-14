@@ -71,7 +71,10 @@ function PostModal({ postId }) {
   function myComment(commentUserId, commentId) {
     if(userId === commentUserId) {
       return (
-        <button className='fas fa-trash feedDelete' onClick={() => deleteComment(commentId)}></button>
+        <div>
+          <button className='fas fa-trash feedDelete' onClick={() => deleteComment(commentId)}></button>
+          <div className='fas fa-edit'></div>
+        </div>
       )
     }
   }
