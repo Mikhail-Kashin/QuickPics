@@ -44,10 +44,9 @@ function Profile() {
   function isFollowing() {
     let followersArr = Object.keys(followersObj)
     if (followersArr.includes(username)) {
-      console.log('this is true!!!!!!')
       return true
     } else {
-      console.log('this is false!!!!')
+      return 'this is false!!!!';
     }
   }
 
