@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { getOnePost, likePost, unLikePost, feedInfo, createComment } from '../../store/feed';
+import { getOnePost, likePost, unLikePost, feedInfo, createComment, deleteMyComment, editMyComment } from '../../store/feed';
 
 import './Feed.css'
 
@@ -58,6 +58,15 @@ function PostModal({ postId }) {
     dispatch(feedInfo())
   }
 
+  async function deleteComment(commentId) {
+    await dispatch(deleteMyComment(commentId))
+    dispatch(getOnePost(postId))
+  }
+
+  async function editComment(commentId) {
+    await dispatch(editMyComment(commentId))
+    dispatch(getOnePost(postId))
+  }
 
   if (!post) return null;
 
@@ -70,10 +79,15 @@ function PostModal({ postId }) {
         <div className='line'></div>
         <div className='modalCommentsContainer'>
           {post?.comments.map((comment) => (
-            <div key={comment.id}>
-              <Link className='far fa-user-circle modalCommentUser' to={`/${comment.userId.username}`}>&nbsp;&nbsp;&nbsp;&nbsp;{comment.userId.username}</Link>
-              <div key={comment.id} className='modalComments'>{comment.body}</div>
-            </div>
+            <>
+              <div key={comment.id}>
+                <Link className='far fa-user-circle modalCommentUser' to={`/${comment.userId.username}`}>&nbsp;&nbsp;&nbsp;&nbsp;{comment.userId.username}</Link>
+                <div key={comment.id} className='modalComments'>{comment.body}
+                  <button onClick={() => deleteComment(comment.id)}>X</button>
+                  {/* <button onClick={() => editComment(comment.id)}>edit</button> */}
+                </div>
+              </div>
+            </>
           ))}
         </div>
         <div className='line'></div>
@@ -93,7 +107,6 @@ function PostModal({ postId }) {
           </div>
         </form>
       </div>
-
     </div>
   )
 }

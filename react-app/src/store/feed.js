@@ -38,6 +38,24 @@ export const createComment = (postId, comment) => async (dispatch) => {
   return "commented"
 }
 
+export const deleteMyComment = (commentId) => async (dispatch) => {
+  const res = await fetch(`/api/feed/delete/comment/${commentId}`, {
+    method: "DELETE",
+    commentId
+  })
+  const data = await res.json();
+  return "deleted comment"
+}
+
+export const editMyComment = (commentId) => async (dispatch) => {
+  const res = await fetch(`/api/feed/edit/comment/${commentId}`, {
+    method: "PATCH",
+    commentId
+  })
+  const data = await res.json();
+  return "edited";
+}
+
 export const likePost = (userId, postId) => async (dispatch) => {
   const res = await fetch(`/api/feed/like/${postId}`, {
     method: "POST",
