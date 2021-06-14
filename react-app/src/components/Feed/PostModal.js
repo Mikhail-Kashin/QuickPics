@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { getOnePost, likePost, unLikePost, feedInfo } from '../../store/feed';
+import { useParams, Link } from 'react-router-dom';
+import { getOnePost, likePost, unLikePost, feedInfo, createComment, deleteMyComment, editMyComment } from '../../store/feed';
 
 import './Feed.css'
 
@@ -10,6 +10,7 @@ function PostModal({ postId }) {
   const post = useSelector(state => state.feedReducer?.selectedPost?.currentPost);
   const userId = useSelector(state => state?.session?.user?.id);
   const likesArr = useSelector(state => state?.feedReducer?.selectedPost?.currentPost?.likes);
+  const [comment, setComment] = useState('');
 
   async function like(userId, postId) {
     await dispatch(likePost(userId, postId))
@@ -49,6 +50,34 @@ function PostModal({ postId }) {
     dispatch(feedInfo())
   }
 
+  const postComment = async (e) => {
+    e.preventDefault();
+    await dispatch(createComment(postId, comment))
+    dispatch(getOnePost(postId))
+    setComment('');
+    dispatch(feedInfo())
+  }
+
+  async function deleteComment(commentId) {
+    await dispatch(deleteMyComment(commentId))
+    dispatch(getOnePost(postId))
+  }
+
+  async function editComment(commentId) {
+    await dispatch(editMyComment(commentId))
+    dispatch(getOnePost(postId))
+  }
+
+  function myComment(commentUserId, commentId) {
+    if(userId === commentUserId) {
+      return (
+        <div>
+          <button className='fas fa-trash feedDelete' onClick={() => deleteComment(commentId)}></button>
+          <div className='fas fa-edit'></div>
+        </div>
+      )
+    }
+  }
 
   if (!post) return null;
 
@@ -61,10 +90,15 @@ function PostModal({ postId }) {
         <div className='line'></div>
         <div className='modalCommentsContainer'>
           {post?.comments.map((comment) => (
-            <div>
-              <Link className='far fa-user-circle modalCommentUser' to={`/${comment.userId.username}`}>&nbsp;&nbsp;&nbsp;&nbsp;{comment.userId.username}</Link>
-              <div key={comment.id} className='modalComments'>{comment.body}</div>
-            </div>
+            <>
+              <div key={comment.id}>
+                <Link className='far fa-user-circle modalCommentUser' to={`/${comment.userId.username}`}>&nbsp;&nbsp;&nbsp;&nbsp;{comment.userId.username}</Link>
+                <div key={comment.id} className='modalComments'>{comment.body}
+                  {/* <button onClick={() => editComment(comment.id)}>edit</button> */}
+                  {myComment(comment?.userId?.id,comment?.id)}
+                </div>
+              </div>
+            </>
           ))}
         </div>
         <div className='line'></div>
@@ -72,11 +106,18 @@ function PostModal({ postId }) {
           {likeCheck(likesArr, postId, userId)}
           &nbsp;&nbsp;&nbsp;&nbsp;liked by {likesArr.length} users
         </div>
-        <div className='modalCommentBar'>
-          <input placeholder='add a comment...' className='modalCommentInput'></input>
-        </div>
+        <form onSubmit={postComment}>
+          <div className='modalCommentBar'>
+            <input
+              onChange={(e) => setComment(e.target.value)}
+              value={comment}
+              placeholder='add a comment...'
+              className='modalCommentInput'
+            ></input>
+            <button className='submitBtn' type="submit">Comment</button>
+          </div>
+        </form>
       </div>
-
     </div>
   )
 }

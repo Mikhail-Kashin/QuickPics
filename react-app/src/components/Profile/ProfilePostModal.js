@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { profileInfo } from '../../store/profile';
-import { getOnePost, likePost, unLikePost } from '../../store/feed';
+import { getOnePost, likePost, unLikePost, createComment } from '../../store/feed';
 import '../Feed/Feed.css'
 
 function ProfilePostModal({ postId }) {
   const dispatch = useDispatch();
   let { name } = useParams();
+  const [comment, setComment] = useState();
   const posts = useSelector(state => state?.profileReducer?.userDict?.posts);
   const profile = useSelector(state => state.profileReducer);
   const userId = useSelector(state => state?.session?.user?.id);
@@ -40,6 +41,7 @@ function ProfilePostModal({ postId }) {
         }
       }
     }
+
     return (
       <div className="far fa-heart like" onClick={() => like(userId, postId)}></div>
     )
@@ -48,22 +50,30 @@ function ProfilePostModal({ postId }) {
   async function unLike(like) {
     const likeId = yourLike(like);
     await dispatch(unLikePost(likeId))
-    dispatch(getOnePost( postId ))
+    dispatch(getOnePost(postId))
     dispatch(profileInfo(name, followersObj, followingObj))
   };
 
 
-  const correctPost = (postId)  => {
-    for(let i = 0; i < posts.length; i++) {
-      if(posts[i].id === postId ) {
+  const correctPost = (postId) => {
+    for (let i = 0; i < posts.length; i++) {
+      if (posts[i].id === postId) {
         return posts[i]
       }
     }
   }
 
+  const postComment = async (e) => {
+    e.preventDefault();
+    await dispatch(createComment(postId, comment))
+    dispatch(getOnePost(postId))
+    setComment('');
+    dispatch(profileInfo(name, followersObj, followingObj))
+  }
+
   return (
     <div className='modalContainer'>
-      <img className='postModalImages'src={correctPost(postId)?.imageUrl}></img>
+      <img className='postModalImages' src={correctPost(postId)?.imageUrl}></img>
       <div className='modalUserName'>
         <Link to={`/${profile.userDict.username}`} className='far fa-user-circle  modalUserNameText'>&nbsp;&nbsp;&nbsp;&nbsp;{profile.userDict.username}</Link>
         <div className='modalCaption'>{correctPost(postId)?.caption}</div>
@@ -74,16 +84,24 @@ function ProfilePostModal({ postId }) {
               <Link className='far fa-user-circle modalCommentUser' to={`/${comment.userId.username}`}>&nbsp;&nbsp;&nbsp;&nbsp;{comment.userId.username}</Link>
               <div key={comment.id} className='modalComments'>{comment.body}</div>
             </div>
-        ))}
+          ))}
         </div>
         <div className='line'></div>
         <div className='modalLikes'>
           {likeCheck(correctPost(postId).likes, postId, userId)}
           &nbsp;&nbsp;&nbsp;&nbsp;liked by {correctPost(postId)?.likes?.length} users
         </div>
-        <div className='modalCommentBar'>
-          <input placeholder='add a comment...' className='modalCommentInput'></input>
-        </div>
+        <form onSubmit={postComment}>
+          <div className='modalCommentBar'>
+            <input
+              placeholder='add a comment...'
+              className='modalCommentInput'
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            ></input>
+            <button className='submitBtn' type="submit">Comment</button>
+          </div>
+        </form>
       </div>
 
     </div>
