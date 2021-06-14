@@ -68,6 +68,14 @@ function PostModal({ postId }) {
     dispatch(getOnePost(postId))
   }
 
+  function myComment(commentUserId, commentId) {
+    if(userId === commentUserId) {
+      return (
+        <button className='fas fa-trash feedDelete' onClick={() => deleteComment(commentId)}></button>
+      )
+    }
+  }
+
   if (!post) return null;
 
   return (
@@ -84,8 +92,8 @@ function PostModal({ postId }) {
                 <Link className='far fa-user-circle modalCommentUser' to={`/${comment.userId.username}`}>&nbsp;&nbsp;&nbsp;&nbsp;{comment.userId.username}</Link>
                 <div key={comment.id} className='modalComments'>{comment.body}
                   {/* <button onClick={() => editComment(comment.id)}>edit</button> */}
+                  {myComment(comment?.userId?.id,comment?.id)}
                 </div>
-                  <button className='fas fa-trash feedDelete' onClick={() => deleteComment(comment.id)}></button>
               </div>
             </>
           ))}
