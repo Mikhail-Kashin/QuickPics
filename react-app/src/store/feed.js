@@ -20,7 +20,6 @@ export const getOnePost = (postId) => async (dispatch) => {
 export const feedInfo = () => async (dispatch) => {
   const res = await fetch('/api/feed');
   const data = await res.json();
-  console.log('----------->feedthunk', data)
   if (res.ok) {
     await dispatch(getFeed(data))
   }
