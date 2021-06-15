@@ -19,8 +19,6 @@ function Profile() {
   const modalState = useSelector(state => state?.modal?.postForm);
   const [followClicked, setFollowClicked] = useState(false)
 
-
-
   function countFollowers() {
     const myFollowers = profile.followers;
     let count = 0;
@@ -31,6 +29,7 @@ function Profile() {
     }
     return count;
   }
+
   function countFollowing() {
     const myFollowing = profile.following;
     let count = 0;
@@ -41,15 +40,16 @@ function Profile() {
     }
     return count;
   }
+
   function isFollowing() {
     let followersArr = Object.keys(followersObj)
     if (followersArr.includes(username)) {
-      console.log('this is true!!!!!!')
       return true
     } else {
-      console.log('this is false!!!!')
+      return 'this is false!!!!';
     }
   }
+
   const FollowButton = async (e) => {
     e.preventDefault();
     const res = await fetch(`/api/profiles/follows/${name}`, {
@@ -60,8 +60,6 @@ function Profile() {
     return (data)
   }
 
-
-
   const UnFollowButton = async (e) => {
     e.preventDefault();
     const res = await fetch(`/api/profiles/unfollows/${name}`, {
@@ -69,7 +67,7 @@ function Profile() {
     })
     const data = await res.json()
     dispatch(profileInfo(name, followersObj, followingObj))
-    return   (data)
+    return (data)
   }
 
   function ifUserIsMe() {
@@ -90,9 +88,9 @@ function Profile() {
   }, [name, dispatch]);
 
   const yourLike = (like) => {
-    if(like?.length > 0) {
-      for(let i = 0; i < like.length; i++) {
-        if(like[i].userId === userId) {
+    if (like?.length > 0) {
+      for (let i = 0; i < like.length; i++) {
+        if (like[i].userId === userId) {
           return like[i].id
         }
       }
@@ -112,9 +110,9 @@ function Profile() {
 
 
   const likeCheck = (likeArr, postId, userId) => {
-    if(likeArr?.length > 0) {
-      for(let i = 0; i < likeArr.length; i++) {
-        if(likeArr[i].userId === userId) {
+    if (likeArr?.length > 0) {
+      for (let i = 0; i < likeArr.length; i++) {
+        if (likeArr[i].userId === userId) {
           return (
             <div className="fas fa-heart unlike" onClick={() => unLike(likeArr)}></div>
           )
@@ -122,7 +120,7 @@ function Profile() {
       }
     }
     return (
-      <div className="far fa-heart like" onClick={() => like(userId,postId)}></div>
+      <div className="far fa-heart like" onClick={() => like(userId, postId)}></div>
     )
   }
 
@@ -141,15 +139,17 @@ function Profile() {
   return (
     <div className='entireProfileContainer'>
       <div className='profileContainer'>
-        <h1 className="profile-user-name">
-          {profile.userDict['username']}
-        </h1>
+        <div>
+          <h1 className="profile-user-name">
+            {profile.userDict['username']}
+          </h1>
+          {ifUserIsMe()}
+        </div>
         <div className="profile-stats">
           <div className="profile-stat-post"> {profile.userDict.posts.length} posts</div>
           <div className="profile-stat-followers">{countFollowers()} followers</div>
           <div className="profile-stat-following">{countFollowing()} following</div>
         </div>
-        {ifUserIsMe()}
         <div className="profile-bio">
         </div>
       </div>
@@ -160,18 +160,18 @@ function Profile() {
               return (
                 <div key={post.id}>
                   {modalState === post?.id &&
-                  <Modal onClose={() => handleClose(post?.id)}>
-                    <ProfilePostModal postId={post.id} />
-                  </Modal>
-                }
+                    <Modal onClose={() => handleClose(post?.id)}>
+                      <ProfilePostModal postId={post.id} />
+                    </Modal>
+                  }
                   <div>
-                    <img className='gallery-image' src={post.imageUrl} onClick={ () => handleOpen(post.id)}
+                    <img className='gallery-image' src={post.imageUrl} onClick={() => handleOpen(post.id)}
                     ></img>
                   </div>
-                    <div className='profileLikes'>
+                  <div className='profileLikes'>
                     {likeCheck(post.likes, post.id, userId)}
                     <h5>Liked by {post.likes.length} users</h5>
-                    </div>
+                  </div>
                 </div>
               )
             })}

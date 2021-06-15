@@ -32,3 +32,11 @@
 .navSearchButton{
     background-color: white;
 }
+
+.about {
+    position: absolute;
+    margin-left: -3rem;
+    /* margin-right: 1rem; */
+    color: black;
+    margin-top: 1.5rem;
+}

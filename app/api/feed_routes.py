@@ -37,9 +37,9 @@ def get_post(postId):
 @feed_routes.route('/comment/<postId>', methods=['POST'])
 @login_required
 def comment_post(postId):
-    userId = request.form["userId"]
     comment = request.form["comment"]
-    postedComment = Comment(userId=userId, postId=postId, body=comment)
+    postedComment = Comment(userId=current_user.id,
+                            postId=postId, body=comment)
     db.session.add(postedComment)
     db.session.commit()
     return {
@@ -47,11 +47,22 @@ def comment_post(postId):
     }
 
 
-@feed_routes.route('comment/<commentId>', methods=['DELETE'])
+@feed_routes.route('/delete/comment/<commentId>', methods=['DELETE'])
 @login_required
 def comment_delete(commentId):
     comment = Comment.query.get(commentId)
     db.session.delete(comment)
+    db.session.commit()
+    return {}
+
+
+@feed_routes.route('/api/feed/edit/comment/<commentId>', methods=['PATCH'])
+@login_required
+def edit_comment(commentId):
+    comment_body = request.form["commentBody"]
+    comment = Comment.query.get(commentId)
+    comment.body = comment_body
+    db.session.add(comment)
     db.session.commit()
     return {}
 

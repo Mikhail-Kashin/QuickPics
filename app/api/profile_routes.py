@@ -34,7 +34,6 @@ def user_follow_post(name):
     return({'user': user.username})
 
 
-
 @profile_routes.route('/unfollows/<name>', methods=['POST'])
 def user_unfollow_post(name):
     print('----->name', name)

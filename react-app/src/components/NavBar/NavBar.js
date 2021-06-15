@@ -30,6 +30,10 @@ const NavBar = () => {
       </div>
       <ul className='nav'>
         <div>
+          <NavLink to="/about" className="far fa-address-card icon" exact={true} activeClassName="active" >
+          </NavLink>
+        </div>
+        <div>
           <NavLink to="/" className="fas fa-home icon" exact={true} activeClassName="active">
           </NavLink>
         </div>

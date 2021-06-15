@@ -14,27 +14,45 @@ const getPost = (postId) => ({
 export const getOnePost = (postId) => async (dispatch) => {
   const res = await fetch(`/api/feed/post/${postId}`);
   const data = await res.json();
-  if (res.ok) {await dispatch(getPost(data))}
+  if (res.ok) { await dispatch(getPost(data)) }
 }
 
 export const feedInfo = () => async (dispatch) => {
   const res = await fetch('/api/feed');
   const data = await res.json();
-  console.log('----------->feedthunk', data)
   if (res.ok) {
     await dispatch(getFeed(data))
   }
 }
 
-export const createComment = (userId, postId, comment) => async (dispatch) => {
+export const createComment = (postId, comment) => async (dispatch) => {
+  let formData = new FormData();
+  formData.append('postId', postId);
+  formData.append('comment', comment);
   const res = await fetch(`api/feed/comment/${postId}`, {
     method: "POST",
-    userId,
-    postId,
-    comment
+    body: formData
   })
   const data = await res.json();
   return "commented"
+}
+
+export const deleteMyComment = (commentId) => async (dispatch) => {
+  const res = await fetch(`/api/feed/delete/comment/${commentId}`, {
+    method: "DELETE",
+    commentId
+  })
+  const data = await res.json();
+  return "deleted comment"
+}
+
+export const editMyComment = (commentId) => async (dispatch) => {
+  const res = await fetch(`/api/feed/edit/comment/${commentId}`, {
+    method: "PATCH",
+    commentId
+  })
+  const data = await res.json();
+  return "edited";
 }
 
 export const likePost = (userId, postId) => async (dispatch) => {

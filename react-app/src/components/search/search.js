@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams, Link} from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { userInfo } from "../../store/search"
 import './search.css'
 
@@ -14,19 +14,19 @@ function Search() {
     (async () => {
       await dispatch(userInfo())
     })();
-  },[dispatch]);
+  }, [dispatch]);
 
 
   return (
     <div className="searchPageContainer">
       {usersArr?.length ? usersArr.filter((val) => {
-        if(userName === "") {
+        if (userName === "") {
           return val
         }
         else if (val.username.toLowerCase().includes(userName.toLowerCase())) {
           return val
         }
-      }).map((user,i) => {
+      }).map((user, i) => {
         return (
           <div className="profileLinkDiv" key={i}>
             <Link className='fas fa-user-circle userProfileLinks' to={`/${user.username}`}>
@@ -35,8 +35,8 @@ function Search() {
           </div>
         )
       })
-      : null
-    }
+        : null
+      }
 
     </div>
   )
