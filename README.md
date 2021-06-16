@@ -1,6 +1,6 @@
 # QuickPics 
 
-![Screen Shot 2021-06-16 at 7 01 53 PM](https://user-images.githubusercontent.com/69477713/122306623-c813dc00-ced6-11eb-8348-30c6990722a2.png)
+![Screen Shot 2021-06-16 at 6 55 56 PM](https://user-images.githubusercontent.com/69477713/122306649-d5c96180-ced6-11eb-9f5d-0eedd6fe1711.png)
 
 
 QuickPics is a clone of the Desktop version of Instagram where users can create an account, follow other users, leave comments, like images, as well as upload their own images with captions.
@@ -43,5 +43,4 @@ Users can view their profile page that contains all of the images that the user 
 ## Comments/Likes
 Users can leave comments on images uploaded by others as well as like the image.
 
-![Screen Shot 2021-06-16 at 6 55 56 PM](https://user-images.githubusercontent.com/69477713/122306649-d5c96180-ced6-11eb-9f5d-0eedd6fe1711.png)
-
+![Screen Shot 2021-06-16 at 7 01 53 PM](https://user-images.githubusercontent.com/69477713/122306623-c813dc00-ced6-11eb-8348-30c6990722a2.png)
