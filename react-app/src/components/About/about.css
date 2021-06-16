@@ -1,13 +1,22 @@
 .about_container {
-    position: absolute;
-    top: 10%;
-    left: 10%;
+    position:    absolute;
+    left:        50%;        /* Start with top left in the center */
+    top:         20%;
+    width:       150px;      /* The fixed width... */
+    height:      100px;      /* ...and height */
+    margin-left: -100px;     /* Shift over half the width */
+    margin-top:  -50px;      /* Shift up half the height */
 }
 
 .about_title {
-    position: absolute;
-    font-size: 50px;
-    left: 20rem;
+    position:    absolute;
+    left:        50%;        /* Start with top left in the center */
+    top:         60%;
+    width:       400px;      /* The fixed width... */
+    height:      100px;      /* ...and height */
+    margin-left: -130px;     /* Shift over half the width */
+    margin-top:  -50px; 
+    font-size: 40px;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
