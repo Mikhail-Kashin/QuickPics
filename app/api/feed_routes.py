@@ -26,6 +26,16 @@ def user_feed():
         'followingPosts': [post.to_dict() for post in followingPosts]
     }
 
+@feed_routes.route('/edit/<postId>', methods=["PATCH"])
+@login_required
+def edit_post(postId):
+    post = Post.query.get(postId)
+    post.caption = request.get_json()['caption']
+    db.session.commit()
+    return {
+        'currentPost': post.to_dict()
+    }
+
 
 @feed_routes.route('/post/<postId>')
 @login_required
