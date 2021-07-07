@@ -73,7 +73,6 @@ function PostModal({ postId }) {
       return (
         <div>
           <button className='fas fa-trash feedDelete' onClick={() => deleteComment(commentId)}></button>
-          <div className='fas fa-edit'></div>
         </div>
       )
     }
@@ -103,7 +102,7 @@ function PostModal({ postId }) {
         </div>
         <div className='line'></div>
         <div className='modalLikes'>
-          {likeCheck(likesArr, postId, userId)}
+          {likeCheck(likesArr, postId, userId)}ƒ
           &nbsp;&nbsp;&nbsp;&nbsp;liked by {likesArr.length} users
         </div>
         <form onSubmit={postComment}>

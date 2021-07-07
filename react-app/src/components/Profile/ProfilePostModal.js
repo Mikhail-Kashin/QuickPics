@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { profileInfo } from '../../store/profile';
-import { getOnePost, likePost, unLikePost, createComment } from '../../store/feed';
+import { getOnePost, likePost, unLikePost, createComment, deleteMyComment } from '../../store/feed';
 import '../Feed/Feed.css'
 
 function ProfilePostModal({ postId }) {
@@ -19,6 +19,11 @@ function ProfilePostModal({ postId }) {
     await dispatch(likePost(userId, postId))
     dispatch(getOnePost(postId))
     dispatch(profileInfo(name, followersObj, followingObj))
+  }
+
+  async function deleteComment(commentId) {
+    await dispatch(deleteMyComment(commentId))
+    dispatch(getOnePost(postId))
   }
 
   const yourLike = (like) => {
@@ -63,6 +68,16 @@ function ProfilePostModal({ postId }) {
     }
   }
 
+  function myComment(commentUserId, commentId) {
+    if(userId === commentUserId) {
+      return (
+        <div>
+          <button className='fas fa-trash profileDelete' onClick={() => deleteComment(commentId)}></button>
+        </div>
+      )
+    }
+  }
+
   const postComment = async (e) => {
     e.preventDefault();
     await dispatch(createComment(postId, comment))
@@ -83,6 +98,7 @@ function ProfilePostModal({ postId }) {
             <div>
               <Link className='far fa-user-circle modalCommentUser' to={`/${comment.userId.username}`}>&nbsp;&nbsp;&nbsp;&nbsp;{comment.userId.username}</Link>
               <div key={comment.id} className='modalComments'>{comment.body}</div>
+              {myComment(comment?.userId?.id,comment?.id)}
             </div>
           ))}
         </div>

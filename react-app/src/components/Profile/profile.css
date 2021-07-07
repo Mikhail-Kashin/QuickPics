@@ -104,3 +104,9 @@
     justify-content: space-around;
     margin-bottom: 2rem;
 }
+
+.profileDelete{
+    border: none;
+    margin-left: 3rem;
+
+ }
