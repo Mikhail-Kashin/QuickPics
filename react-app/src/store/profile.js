@@ -32,6 +32,15 @@ export const profileInfo = (name) => async (dispatch) => {
 
 }
 
+export const deletePost = (id) => async (dispatch) => {
+    const res = await fetch(`api/profiles/delete/${id}`, {
+        method: "DELETE",
+        id
+    })
+    const data = await res.json()
+    return "deleted"
+}
+
 const initialState = {
     followers: {},
     following: {},

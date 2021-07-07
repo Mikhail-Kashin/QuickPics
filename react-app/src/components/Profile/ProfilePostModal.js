@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { profileInfo } from '../../store/profile';
+import { profileInfo, deletePost } from '../../store/profile';
 import { getOnePost, likePost, unLikePost, createComment, deleteMyComment } from '../../store/feed';
 import '../Feed/Feed.css'
 
@@ -24,6 +24,9 @@ function ProfilePostModal({ postId }) {
   async function deleteComment(commentId) {
     await dispatch(deleteMyComment(commentId))
     dispatch(getOnePost(postId))
+  }
+  async function deleteUserPost(postId) {
+    await dispatch(deletePost(postId))
   }
 
   const yourLike = (like) => {
@@ -78,6 +81,7 @@ function ProfilePostModal({ postId }) {
     }
   }
 
+
   const postComment = async (e) => {
     e.preventDefault();
     await dispatch(createComment(postId, comment))
@@ -92,6 +96,7 @@ function ProfilePostModal({ postId }) {
       <div className='modalUserName'>
         <Link to={`/${profile.userDict.username}`} className='far fa-user-circle  modalUserNameText'>&nbsp;&nbsp;&nbsp;&nbsp;{profile.userDict.username}</Link>
         <div className='modalCaption'>{correctPost(postId)?.caption}</div>
+        <button onClick={() => deleteUserPost(postId)}>helloooooooo</button>
         <div className='line'></div>
         <div className='modalCommentsContainer'>
           {correctPost(postId)?.comments.map((comment) => (
