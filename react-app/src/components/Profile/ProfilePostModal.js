@@ -24,10 +24,6 @@ function ProfilePostModal({ postId }) {
     dispatch(profileInfo(name, followersObj, followingObj))
   }
 
-  async function deleteComment(commentId) {
-    await dispatch(deleteMyComment(commentId))
-    dispatch(getOnePost(postId))
-  }
   async function deleteUserPost(postId) {
     var r = window.confirm('Are you sure you want to delete your post?')
     if(r === true) {
@@ -86,11 +82,11 @@ function ProfilePostModal({ postId }) {
     }
   }
 
-  function myComment(commentUserId, commentId) {
+  function myComment(commentUserId, commentId, postId) {
     if(userId === commentUserId) {
       return (
         <div>
-          <button className='fas fa-trash profileDelete' onClick={() => deleteComment(commentId)}></button>
+          <button className='fas fa-trash profileDelete' onClick={() => deleteComment(commentId, postId)}></button>
         </div>
       )
     }
@@ -102,6 +98,11 @@ function ProfilePostModal({ postId }) {
         <button className='fas fa-trash postDelete' onClick={() => deleteUserPost(postId)}></button>
       )
     }
+  }
+
+  async function deleteComment(commentId) {
+    await dispatch(deleteMyComment(commentId))
+    dispatch(profileInfo(name, followersObj, followingObj))
   }
 
   const postComment = async (e) => {
@@ -125,7 +126,7 @@ function ProfilePostModal({ postId }) {
             <div>
               <Link className='far fa-user-circle modalCommentUser' to={`/${comment.userId.username}`}>&nbsp;&nbsp;&nbsp;&nbsp;{comment.userId.username}</Link>
               <div key={comment.id} className='modalComments'>{comment.body}</div>
-              {myComment(comment?.userId?.id,comment?.id)}
+              {myComment(comment?.userId?.id,comment?.id, postId)}
             </div>
           ))}
         </div>
