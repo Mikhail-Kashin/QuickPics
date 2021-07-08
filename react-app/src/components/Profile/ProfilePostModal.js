@@ -17,7 +17,7 @@ function ProfilePostModal({ postId }) {
   const username = useSelector(state => state.session.user.username)
   const followersObj = profile.followers
   const followingObj = profile.following
-
+  var confirm;
   async function like(userId, postId) {
     await dispatch(likePost(userId, postId))
     dispatch(getOnePost(postId))
@@ -29,11 +29,19 @@ function ProfilePostModal({ postId }) {
     dispatch(getOnePost(postId))
   }
   async function deleteUserPost(postId) {
-    alert('Post deleted')
-    await dispatch(deletePost(postId))
+    var r = window.confirm('Are you sure you want to delete your post?')
+    if(r === true) {
+      confirm = true;
+    }
+    if(confirm === true) {
+      await dispatch(deletePost(postId))
     dispatch(hidePost(postId))
     dispatch(profileInfo(name, followersObj, followingObj))
-
+    }
+    else {
+      dispatch(hidePost(postId))
+    dispatch(profileInfo(name, followersObj, followingObj))
+    }
   }
 
   const yourLike = (like) => {
