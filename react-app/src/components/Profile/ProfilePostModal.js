@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { profileInfo, deletePost } from '../../store/profile';
+import { hidePost } from '../../store/modal'
 import { getOnePost, likePost, unLikePost, createComment, deleteMyComment } from '../../store/feed';
 import '../Feed/Feed.css'
 
@@ -27,6 +28,9 @@ function ProfilePostModal({ postId }) {
   }
   async function deleteUserPost(postId) {
     await dispatch(deletePost(postId))
+    dispatch(hidePost(postId))
+    dispatch(profileInfo(name, followersObj, followingObj))
+
   }
 
   const yourLike = (like) => {
