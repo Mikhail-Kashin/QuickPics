@@ -102,7 +102,7 @@ function PostModal({ postId }) {
         </div>
         <div className='line'></div>
         <div className='modalLikes'>
-          {likeCheck(likesArr, postId, userId)}ƒ
+          {likeCheck(likesArr, postId, userId)}
           &nbsp;&nbsp;&nbsp;&nbsp;liked by {likesArr.length} users
         </div>
         <form onSubmit={postComment}>
