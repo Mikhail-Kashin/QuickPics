@@ -20,7 +20,7 @@ const NavBar = () => {
   return (
     <nav>
       <form className="searchBarNav" onSubmit={handleSubmit}>
-        <input type='input' placeholder='Search for a user'  onChange={event => {setSearchTerm(event.target.value)}}></input>
+        <input type='input' placeholder='Search for a user' className='searchBar' onChange={event => {setSearchTerm(event.target.value)}}></input>
         <button type='submit' className='fas fa-search navSearchButton'></button>
       </form>
       <div>

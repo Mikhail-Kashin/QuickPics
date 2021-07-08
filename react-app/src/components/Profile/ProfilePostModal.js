@@ -85,6 +85,13 @@ function ProfilePostModal({ postId }) {
     }
   }
 
+  function myPost(id) {
+    if(userId === id) {
+      return (
+        <button onClick={() => deleteUserPost(postId)}>helloooooooo</button>
+      )
+    }
+  }
 
   const postComment = async (e) => {
     e.preventDefault();
@@ -100,7 +107,7 @@ function ProfilePostModal({ postId }) {
       <div className='modalUserName'>
         <Link to={`/${profile.userDict.username}`} className='far fa-user-circle  modalUserNameText'>&nbsp;&nbsp;&nbsp;&nbsp;{profile.userDict.username}</Link>
         <div className='modalCaption'>{correctPost(postId)?.caption}</div>
-        <button onClick={() => deleteUserPost(postId)}>helloooooooo</button>
+        {myPost(userId)}
         <div className='line'></div>
         <div className='modalCommentsContainer'>
           {correctPost(postId)?.comments.map((comment) => (
