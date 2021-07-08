@@ -29,6 +29,7 @@ function ProfilePostModal({ postId }) {
     dispatch(getOnePost(postId))
   }
   async function deleteUserPost(postId) {
+    alert('Post deleted')
     await dispatch(deletePost(postId))
     dispatch(hidePost(postId))
     dispatch(profileInfo(name, followersObj, followingObj))
@@ -90,7 +91,7 @@ function ProfilePostModal({ postId }) {
   function myPost(username) {
     if(username === postUsername) {
       return (
-        <button onClick={() => deleteUserPost(postId)}>helloooooooo</button>
+        <button className='fas fa-trash postDelete' onClick={() => deleteUserPost(postId)}></button>
       )
     }
   }
