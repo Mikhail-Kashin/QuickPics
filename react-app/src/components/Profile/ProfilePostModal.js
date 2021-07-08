@@ -11,8 +11,10 @@ function ProfilePostModal({ postId }) {
   let { name } = useParams();
   const [comment, setComment] = useState();
   const posts = useSelector(state => state?.profileReducer?.userDict?.posts);
+  const postUsername = useSelector(state => state?.profileReducer?.userDict.username)
   const profile = useSelector(state => state.profileReducer);
   const userId = useSelector(state => state?.session?.user?.id);
+  const username = useSelector(state => state.session.user.username)
   const followersObj = profile.followers
   const followingObj = profile.following
 
@@ -85,8 +87,8 @@ function ProfilePostModal({ postId }) {
     }
   }
 
-  function myPost(id) {
-    if(userId === id) {
+  function myPost(username) {
+    if(username === postUsername) {
       return (
         <button onClick={() => deleteUserPost(postId)}>helloooooooo</button>
       )
@@ -107,7 +109,7 @@ function ProfilePostModal({ postId }) {
       <div className='modalUserName'>
         <Link to={`/${profile.userDict.username}`} className='far fa-user-circle  modalUserNameText'>&nbsp;&nbsp;&nbsp;&nbsp;{profile.userDict.username}</Link>
         <div className='modalCaption'>{correctPost(postId)?.caption}</div>
-        {myPost(userId)}
+        {myPost(username)}
         <div className='line'></div>
         <div className='modalCommentsContainer'>
           {correctPost(postId)?.comments.map((comment) => (
