@@ -7,7 +7,7 @@ class Like(db.Model):
 
   id = db.Column(db.Integer, primary_key = True)
   userId = db.Column(db.Integer,db.ForeignKey('users.id'),nullable = False)
-  postId = db.Column(db.Integer,db.ForeignKey('posts.id'),nullable = False)
+  postId = db.Column(db.Integer,db.ForeignKey('posts.id', ondelete='CASCADE'),nullable = False)
   user = db.relationship('User', back_populates='likes')
   posts = db.relationship('Post', back_populates='likes')
   def to_dict(self):

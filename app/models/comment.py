@@ -1,3 +1,4 @@
+from os import O_NDELAY
 from .db import db
 from .user import User
 from .post import Post
@@ -9,7 +10,7 @@ class Comment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    postId = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
+    postId = db.Column(db.Integer, db.ForeignKey('posts.id', ondelete='CASCADE'), nullable=False)
     body = db.Column(db.Text, nullable=False)
     user = db.relationship('User', back_populates='comments')
     posts = db.relationship('Post', back_populates='comments')

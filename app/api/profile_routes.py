@@ -42,3 +42,10 @@ def user_unfollow_post(name):
     db.session.add(current_user)
     db.session.commit()
     return({'user': user.username})
+
+@profile_routes.route('/delete/<id>', methods=['DELETE'])
+def user_delete_post(id):
+    post = Post.query.get(id)
+    db.session.delete(post)
+    db.session.commit()
+    return {}
