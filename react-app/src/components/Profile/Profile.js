@@ -139,16 +139,16 @@ function Profile() {
   return (
     <div className='entireProfileContainer'>
       <div className='profileContainer'>
+        <div className="profile-stats">
+          <div className="profile-stat-post"> {profile.userDict.posts.length} posts</div>
+          <div className="profile-stat-followers">{countFollowers()} followers</div>
+          <div className="profile-stat-following">{countFollowing()} following</div>
+        </div>
         <div>
           <h1 className="profile-user-name">
             {profile.userDict['username']}
           </h1>
           {ifUserIsMe()}
-        </div>
-        <div className="profile-stats">
-          <div className="profile-stat-post"> {profile.userDict.posts.length} posts</div>
-          <div className="profile-stat-followers">{countFollowers()} followers</div>
-          <div className="profile-stat-following">{countFollowing()} following</div>
         </div>
         <div className="profile-bio">
         </div>
